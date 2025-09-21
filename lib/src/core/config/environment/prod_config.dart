@@ -3,7 +3,7 @@
 class ProdConfig {
 static const String environment = 'prod';
   static const String appName = 'Flutter App (PROD)';
-  static const String baseUrl = 'https://dummyjson.com';
+  static const String baseUrl = 'https://taseese.org/api';
   static const String apiVersion = '/api/v1';
   static const bool isProduction = true;
   static const bool enableLogging = false;

@@ -16,7 +16,7 @@ class DevConfig {
     'Accept': 'application/json',
   };
 
-  // Timeout configurations
+  // Timeout configurations         
   static const int connectionTimeout = 30000; // 30 seconds
   static const int receiveTimeout = 30000; // 30 seconds
   static const int sendTimeout = 30000; // 30 seconds
