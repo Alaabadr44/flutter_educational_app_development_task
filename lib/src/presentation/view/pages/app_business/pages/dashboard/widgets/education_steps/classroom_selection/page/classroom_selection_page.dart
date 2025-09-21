@@ -89,6 +89,9 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
                     return ResponsiveListWidget<ClassroomGradeSelection>(
                       items: data.data ?? [],
                       listType: value,
+                      childAspectRatio: 1.2, // Reduce height for grid items
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                       itemBuilder:
                           (context, item, index) => ValueListenableBuilder(
                             valueListenable:
@@ -102,6 +105,7 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
                             ) {
                               final isSelected = item == selectedValue;
                               final onTap = () {
+                                context.read<DashboardController>().playSound();
                                 context
                                     .read<DashboardController>()
                                     .selectedClassroom

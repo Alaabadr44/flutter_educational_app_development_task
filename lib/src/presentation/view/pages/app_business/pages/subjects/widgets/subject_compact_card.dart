@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_bloc/src/core/config/app_colors.dart';
 
+import '../../../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../../../domain/entities/subjects_data.dart';
 import '../../../../../common/text_widget.dart';
 
@@ -67,7 +68,7 @@ class _SubjectCompactCardState extends State<SubjectCompactCard> {
                   // Subject name
                   Expanded(
                     child: TextWidget(
-                      text: widget.subject.name ?? 'Unknown Subject',
+                      text: widget.subject.name ?? S.current.unknown_subject,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -171,8 +172,8 @@ class _SubjectCompactCardState extends State<SubjectCompactCard> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'السعر',
+          Text(
+            S.current.price,
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,
@@ -180,7 +181,7 @@ class _SubjectCompactCardState extends State<SubjectCompactCard> {
             ),
           ),
           Text(
-            '${widget.subject.price} ر.س',
+            '${widget.subject.price} SAR',
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -196,8 +197,8 @@ class _SubjectCompactCardState extends State<SubjectCompactCard> {
           color: Colors.green,
           borderRadius: BorderRadius.circular(6),
         ),
-        child: const Text(
-          'مجانية',
+        child: Text(
+          S.current.free,
           style: TextStyle(
             fontSize: 14,
             color: Colors.white,
@@ -271,7 +272,11 @@ class _SubjectCompactCardState extends State<SubjectCompactCard> {
   }
 }
 
-void showSubjectDetailsDialog(BuildContext context, Subject subject, Function(int) onUnitsTap) {
+void showSubjectDetailsDialog(
+  BuildContext context,
+  Subject subject,
+  Function(int) onUnitsTap,
+) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -289,7 +294,11 @@ void showSubjectDetailsDialog(BuildContext context, Subject subject, Function(in
 class SubjectDetailsDialog extends StatelessWidget {
   final Subject subject;
   final Function(int) onUnitsTap;
-  const SubjectDetailsDialog({super.key, required this.subject, required this.onUnitsTap});
+  const SubjectDetailsDialog({
+    super.key,
+    required this.subject,
+    required this.onUnitsTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +318,7 @@ class SubjectDetailsDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    subject.name ?? 'اسم المادة غير متوفر',
+                    subject.name ?? S.current.subject_name_not_available,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -358,63 +367,72 @@ class SubjectDetailsDialog extends StatelessWidget {
             ],
 
             // Subject details
-            _buildDetailSection('تفاصيل المادة', [
-              if (subject.type != null) _buildDetailRow('النوع', subject.type!),
+            _buildDetailSection(S.current.subject_details, [
+              if (subject.type != null)
+                _buildDetailRow(S.current.type, subject.type!),
               if (subject.price != null)
-                _buildDetailRow('السعر', '${subject.price} ر.س'),
+                _buildDetailRow(S.current.price, '${subject.price} SAR'),
               if (subject.oldPrice != null && subject.oldPrice! > 0)
-                _buildDetailRow('السعر السابق', '${subject.oldPrice} ر.س'),
+                _buildDetailRow(
+                  S.current.previous_price,
+                  '${subject.oldPrice} SAR',
+                ),
               if (subject.teacherPrice != null)
-                _buildDetailRow('سعر المعلم', '${subject.teacherPrice} ر.س'),
+                _buildDetailRow(
+                  S.current.teacher_price,
+                  '${subject.teacherPrice} SAR',
+                ),
               if (subject.isSubscribe != null)
                 _buildDetailRow(
-                  'حالة الاشتراك',
-                  subject.isSubscribe! ? 'مشترك' : 'غير مشترك',
+                  S.current.subscription_status,
+                  subject.isSubscribe!
+                      ? S.current.subscribed
+                      : S.current.not_subscribed,
                 ),
             ]),
 
             // Progress details
             if (subject.lessonsCount != null && subject.lessonsCount! > 0) ...[
               const SizedBox(height: 16),
-              _buildProgressSection(),
+              _buildProgressSection(context),
             ],
 
             // Answer statistics
             if (subject.trueAnswersCount != null ||
                 subject.falseAnswersCount != null) ...[
               const SizedBox(height: 16),
-              _buildStatsSection(),
+              _buildStatsSection(context),
             ],
 
             // // System information
             // const SizedBox(height: 16),
-            // _buildDetailSection('معلومات النظام', [
+            // _buildDetailSection('System Information', [
             //   if (subject.id != null)
-            //     _buildDetailRow('معرف المادة', '#${subject.id}'),
+            //     _buildDetailRow('Subject ID', '#${subject.id}'),
             //   if (subject.systemId != null)
-            //     _buildDetailRow('النظام', '${subject.systemId}'),
+            //     _buildDetailRow('System', '${subject.systemId}'),
             //   if (subject.stageId != null)
-            //     _buildDetailRow('المرحلة', '${subject.stageId}'),
+            //     _buildDetailRow('Stage', '${subject.stageId}'),
             //   if (subject.classroomId != null)
-            //     _buildDetailRow('الصف', '${subject.classroomId}'),
+            //     _buildDetailRow('Classroom', '${subject.classroomId}'),
             //   if (subject.termId != null)
-            //     _buildDetailRow('الفصل', '${subject.termId}'),
+            //     _buildDetailRow('Term', '${subject.termId}'),
             //   if (subject.pathId != null)
-            //     _buildDetailRow('المسار', '${subject.pathId}'),
+            //     _buildDetailRow('Path', '${subject.pathId}'),
             // ]),
 
             // Timestamps
             if (subject.createdAt != null || subject.updatedAt != null) ...[
               const SizedBox(height: 16),
-              _buildDetailSection('التواريخ', [
+              _buildDetailSection(S.current.dates, [
                 if (subject.createdAt != null)
                   _buildDetailRow(
-                    'تاريخ الإنشاء',
+                    S.current.created_date,
                     _formatDate(subject.createdAt!),
                   ),
                 if (subject.updatedAt != null)
                   _buildDetailRow(
-                    'تاريخ التحديث',
+                    S.current.updated_date,
                     _formatDate(subject.updatedAt!),
                   ),
               ]),
@@ -443,9 +461,9 @@ class SubjectDetailsDialog extends StatelessWidget {
                     Icons.add_shopping_cart,
                     color: AppColors.reverseBaseColor,
                   ),
-                  label: const Text(
-                    'عرض الدروس',
-                    style: TextStyle(
+                  label: Text(
+                    S.current.view_lessons,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: AppColors.reverseBaseColor,
@@ -516,7 +534,7 @@ class SubjectDetailsDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildProgressSection() {
+  Widget _buildProgressSection(BuildContext context) {
     final lessonsCount = subject.lessonsCount ?? 0;
     final finishedLessons = subject.finishesLessonsCount ?? 0;
     final progress = lessonsCount > 0 ? finishedLessons / lessonsCount : 0.0;
@@ -525,7 +543,7 @@ class SubjectDetailsDialog extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'التقدم في الدروس',
+          S.current.lesson_progress,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -547,7 +565,7 @@ class SubjectDetailsDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'الدروس المكتملة',
+                    S.current.completed_lessons,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -555,7 +573,7 @@ class SubjectDetailsDialog extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '$finishedLessons من $lessonsCount',
+                    '$finishedLessons ${S.current.of_separator} $lessonsCount',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -608,12 +626,12 @@ class SubjectDetailsDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildStatsSection() {
+  Widget _buildStatsSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'إحصائيات الإجابات',
+          S.current.answer_statistics,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -650,7 +668,7 @@ class SubjectDetailsDialog extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'إجابة صحيحة',
+                        S.current.correct_answer,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.green[600],
@@ -676,7 +694,7 @@ class SubjectDetailsDialog extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'إجابة خاطئة',
+                        S.current.wrong_answer,
                         style: TextStyle(fontSize: 12, color: Colors.red[600]),
                       ),
                     ],
@@ -700,7 +718,7 @@ class SubjectDetailsDialog extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'نسبة الدقة',
+                        S.current.accuracy_rate,
                         style: TextStyle(fontSize: 12, color: Colors.blue[600]),
                       ),
                     ],

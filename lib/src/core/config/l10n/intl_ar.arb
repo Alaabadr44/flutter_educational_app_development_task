@@ -63,7 +63,7 @@
   "academic_term_selection": "اختيار الفصل الأكاديمي",
   "select_academic_term": "اختر الفصل الأكاديمي",
   "educational_track_selection": "اختيار المسار التعليمي",
-  "select_educational_track": "اختر مسارك التعليمي"
+  "select_educational_track": "اختر مسارك التعليمي",
   "resendIn": "إعادة إرسال في",
   "otp_field_required": "أدخل رمز التحقق الخاص بك",
   "country_not_available": "كلمات البحث لا تطابق مع الدول المتاحه لدينا",
@@ -1021,5 +1021,129 @@
   "department": "القسم",
   "title": "المسمى الوظيفي",
   "education": "التعليم",
-  "university": "الجامعة"
+  "university": "الجامعة",
+  "step_of": "خطوة {currentStep} من {totalSteps}",
+  "@step_of": {
+    "description": "Step counter display",
+    "placeholders": {
+      "currentStep": {
+        "type": "int"
+      },
+      "totalSteps": {
+        "type": "int"
+      }
+    }
+  },
+  "complete_selection": "إكمال الاختيار",
+  "grid_view": "عرض الشبكة",
+  "list_view": "عرض القائمة",
+  
+  "_comment_quiz": "النصوص المتعلقة بالاختبارات والأسئلة",
+  "quiz_no_questions_available": "لا توجد أسئلة متاحة",
+  "quiz_no_questions_found_for_lesson": "لم يتم العثور على أسئلة لهذا الدرس حالياً",
+  "quiz_back_button": "العودة",
+  "quiz_lesson_quiz_title": "اختبار الدرس",
+  "quiz_number_of_questions": "عدد الأسئلة",
+  "quiz_questions_count": "{count} سؤال",
+  "@quiz_questions_count": {
+    "description": "Display number of questions",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_duration": "مدة الاختبار",
+  "quiz_duration_minutes": "{minutes} دقيقة",
+  "@quiz_duration_minutes": {
+    "description": "Display quiz duration in minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_allowed_attempts": "المحاولات المسموحة",
+  "quiz_attempts_per_question": "{attempts} محاولات لكل سؤال",
+  "@quiz_attempts_per_question": {
+    "description": "Display number of attempts per question",
+    "placeholders": {
+      "attempts": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_passing_score": "درجة النجاح",
+  "quiz_passing_score_percentage": "60% أو أكثر",
+  "quiz_start_button": "بدء الاختبار",
+  "quiz_back_to_lessons": "العودة للدروس",
+  "quiz_lesson_name_fallback": "الدرس",
+  "quiz_name_fallback": "الاختبار",
+  "quiz_previous_button": "السابق",
+  "quiz_submit_answer": "إرسال الإجابة",
+  "quiz_next_button": "التالي",
+  "quiz_finish_button": "إنهاء الاختبار",
+  "quiz_exit_title": "إنهاء الاختبار",
+  "quiz_exit_confirmation": "هل أنت متأكد من رغبتك في إنهاء الاختبار والعودة؟",
+  "quiz_cancel_button": "إلغاء",
+  "quiz_exit_button": "إنهاء",
+  
+  "_comment_subjects": "نصوص صفحة المواد الدراسية",
+  "subjects": "المواد",
+  "required_subjects": "إجباري",
+  "optional_subjects": "اختياري",
+  "no_subjects_available": "لا توجد مواد متاحة",
+  "no_subjects_data_available": "لا توجد بيانات مواد متاحة",
+  "no_required_subjects_available": "لا توجد مواد إجبارية متاحة لاختياراتك الحالية",
+  "no_optional_subjects_available": "لا توجد مواد اختيارية متاحة لاختياراتك الحالية",
+  "your_selections": "اختياراتك",
+  "not_selected": "لم يتم الاختيار",
+  "subject_name_not_available": "اسم المادة غير متوفر",
+  "subject_details": "تفاصيل المادة",
+  "type": "النوع",
+  "price": "السعر",
+  "previous_price": "السعر السابق",
+  "teacher_price": "سعر المعلم",
+  "subscription_status": "حالة الاشتراك",
+  "subscribed": "مشترك",
+  "not_subscribed": "غير مشترك",
+  "lesson_progress": "تقدم الدروس",
+  "completed_lessons": "الدروس المكتملة",
+  "answer_statistics": "إحصائيات الإجابات",
+  "correct_answer": "إجابة صحيحة",
+  "wrong_answer": "إجابة خاطئة",
+  "accuracy_rate": "معدل الدقة",
+  "dates": "التواريخ",
+  "created_date": "تاريخ الإنشاء",
+  "updated_date": "تاريخ التحديث",
+  "view_lessons": "عرض الدروس",
+  "show_details": "إظهار التفاصيل",
+  "hide_details": "إخفاء التفاصيل",
+  "unknown_subject": "مادة غير معروفة",
+  "free": "مجاني",
+  "subscribed": "مشترك",
+  "not_subscribed": "غير مشترك",
+  "detailed_price": "السعر التفصيلي",
+  "current_price": "السعر الحالي",
+  "completely_free_subject": "مادة مجانية بالكامل",
+  "subscribe_now": "اشترك الآن",
+  "you_are_subscribed": "أنت مشترك في هذه المادة",
+  "subject_details_section": "تفاصيل المادة",
+  "system_information": "معلومات النظام",
+  "study_unit": "وحدة دراسية",
+  "regular_subject": "مادة عادية",
+  "lessons": "الدروس",
+  "completed": "مكتمل",
+  "system": "النظام",
+  "stage": "المرحلة",
+  "classroom": "الفصل",
+  "term": "الفصل الدراسي",
+  "path": "المسار",
+  "correct": "صحيح",
+  "wrong": "خطأ",
+  "accuracy": "الدقة",
+  "discount": "خصم",
+  "of_separator": "من",
+  "created_date_label": "تاريخ الإنشاء",
+  "updated_date_label": "تاريخ التحديث"
 }

@@ -8,8 +8,6 @@ import '../../../../../../../core/utils/extension.dart';
 import '../../../../../../../core/utils/layout/responsive_layout.dart';
 import '../../../../../common/assistance_pagination.dart';
 import '../../../../../commbonant/lang_bottom_sheet.dart';
-import '../../../../../common/fields/_field_helper/form_key.dart';
-import '../../../../../common/fields/generic_text_field.dart';
 import '../../../../../common/text_widget.dart';
 import '../controller/dashboard_controller.dart';
 import '../widgets/education_steps/academic_term_selection/page/academic_term_selection_page.dart';
@@ -58,7 +56,10 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
             valueListenable: _pageController.listTypeNotifier,
             builder: (context, listType, child) {
               return IconButton(
-                tooltip: listType == ListType.list ? 'Grid View' : 'List View',
+                tooltip:
+                    listType == ListType.list
+                        ? S.current.grid_view
+                        : S.current.list_view,
                 onPressed: () {
                   _pageController.toggleView();
                 },
@@ -135,7 +136,7 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
         valueListenable: _pageController.currentStepNotifier,
         builder: (context, currentStep, child) {
           final controller = _pageController;
-          final totalSteps = controller.stepTitles.length;
+          final totalSteps = controller.stepTitles(context).length;
 
           return Column(
             children: [
@@ -192,7 +193,7 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: "Step $currentStep of $totalSteps",
+                          text: S.current.step_of(currentStep, totalSteps),
                           style: context.bodyS?.copyWith(
                             color: AppColors.primaryColor,
                             fontWeight: FontWeight.w600,
@@ -200,7 +201,7 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                         ),
                         const SizedBox(height: 4),
                         TextWidget(
-                          text: controller.stepTitles[currentStep - 1],
+                          text: controller.stepTitles(context)[currentStep - 1],
                           style: context.titleM?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: AppColors.textPrimaryColor,
@@ -208,7 +209,9 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                         ),
                         const SizedBox(height: 4),
                         TextWidget(
-                          text: controller.stepDescriptions[currentStep - 1],
+                          text:
+                              controller.stepDescriptions(context)[currentStep -
+                                  1],
                           style: context.bodyM?.copyWith(
                             color: AppColors.grey600,
                           ),
@@ -245,7 +248,7 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
         valueListenable: _pageController.currentStepNotifier,
         builder: (context, currentStep, child) {
           final controller = _pageController;
-          final totalSteps = controller.stepTitles.length;
+          final totalSteps = controller.stepTitles(context).length;
           final isFirstStep = currentStep <= 1;
           final isLastStep = currentStep >= totalSteps;
 
@@ -267,7 +270,7 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                       ),
                     ),
                     child: TextWidget(
-                      text: 'Previous',
+                      text: S.current.previous,
                       style: context.bodyM?.copyWith(
                         color: AppColors.primaryColor,
                         fontWeight: FontWeight.w600,
@@ -306,12 +309,12 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                               canProceed
                                   ? () {
                                     if (isLastStep) {
-                                      context.nextNamed(
+                                      context.nextReplacementNamed(
                                         AppLocalRoute.subjects.route,
                                         argument: controller.getSelections(),
                                       );
                                     } else {
-                                      controller.goNext();
+                                      controller.goNext(context);
                                     }
                                   }
                                   : null,
@@ -329,7 +332,9 @@ class _DashboardPageSflState extends State<DashboardPageSfl>
                           ),
                           child: TextWidget(
                             text:
-                                isLastStep ? 'Complete Selection' : 'Continue',
+                                isLastStep
+                                    ? S.current.complete_selection
+                                    : S.current.button_continue_title,
                             style: context.bodyM?.copyWith(
                               color:
                                   canProceed ? Colors.white : AppColors.grey600,

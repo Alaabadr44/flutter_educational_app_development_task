@@ -113,7 +113,10 @@ class QuizResultsWidget extends StatelessWidget {
 
           // Status Text
           TextWidget(
-            text: results.isPassed ? 'تهانينا! لقد نجحت' : 'لم تنجح هذه المرة',
+            text:
+                results.isPassed
+                    ? 'Congratulations! You passed'
+                    : 'You did not pass this time',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w800,
@@ -139,7 +142,7 @@ class QuizResultsWidget extends StatelessWidget {
           const SizedBox(height: 8),
 
           TextWidget(
-            text: 'درجتك: ${results.grade}',
+            text: 'Your score: ${results.grade}',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -170,7 +173,7 @@ class QuizResultsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
-            text: 'نتائج الاختبار',
+            text: 'Quiz Results',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -208,7 +211,7 @@ class QuizResultsWidget extends StatelessWidget {
                       ),
                     ),
                     TextWidget(
-                      text: 'النتيجة',
+                      text: 'Result',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey[600],
@@ -228,7 +231,7 @@ class QuizResultsWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildStatItem(
-                  'الأسئلة الصحيحة',
+                  'Correct Questions',
                   '${results.correctAnswers}',
                   AppColors.successColor,
                   Icons.check_circle,
@@ -237,7 +240,7 @@ class QuizResultsWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _buildStatItem(
-                  'الأسئلة الخاطئة',
+                  'Wrong Questions',
                   '${results.totalQuestions - results.correctAnswers}',
                   AppColors.errorColor,
                   Icons.cancel,
@@ -252,7 +255,7 @@ class QuizResultsWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildStatItem(
-                  'إجمالي النقاط',
+                  'Total Points',
                   '${results.totalPoints}',
                   AppColors.primaryColor,
                   Icons.star,
@@ -261,7 +264,7 @@ class QuizResultsWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _buildStatItem(
-                  'الوقت المستغرق',
+                  'Time Taken',
                   _formatTime(results.timeSpent),
                   Colors.orange,
                   Icons.timer,
@@ -293,7 +296,7 @@ class QuizResultsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
-            text: 'تحليل الأداء',
+            text: 'Performance Analysis',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -304,7 +307,7 @@ class QuizResultsWidget extends StatelessWidget {
           const SizedBox(height: 16),
 
           _buildPerformanceItem(
-            'معدل الإجابة الصحيحة',
+            'Correct Answer Rate',
             '${results.percentage}%',
             results.percentage / 100,
             _getScoreColor(results.percentage),
@@ -313,7 +316,7 @@ class QuizResultsWidget extends StatelessWidget {
           const SizedBox(height: 12),
 
           _buildPerformanceItem(
-            'كفاءة الوقت',
+            'Time Efficiency',
             _getTimeEfficiency(),
             _getTimeEfficiencyValue(),
             _getTimeEfficiencyColor(),
@@ -345,7 +348,7 @@ class QuizResultsWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     TextWidget(
-                      text: 'ملاحظات الأداء',
+                      text: 'Performance Notes',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -389,7 +392,7 @@ class QuizResultsWidget extends StatelessWidget {
               ),
               icon: const Icon(Icons.refresh),
               label: const TextWidget(
-                text: 'إعادة المحاولة',
+                text: 'Retry',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -417,9 +420,7 @@ class QuizResultsWidget extends StatelessWidget {
             icon: Icon(results.isPassed ? Icons.arrow_forward : Icons.home),
             label: TextWidget(
               text:
-                  results.isPassed
-                      ? 'متابعة إلى الدرس التالي'
-                      : 'العودة للرئيسية',
+                  results.isPassed ? 'Continue to Next Lesson' : 'Back to Home',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
@@ -552,10 +553,10 @@ class QuizResultsWidget extends StatelessWidget {
 
   String _getTimeEfficiency() {
     final efficiency = _getTimeEfficiencyValue();
-    if (efficiency >= 0.8) return 'ممتاز';
-    if (efficiency >= 0.6) return 'جيد';
-    if (efficiency >= 0.4) return 'متوسط';
-    return 'يحتاج تحسين';
+    if (efficiency >= 0.8) return 'Excellent';
+    if (efficiency >= 0.6) return 'Good';
+    if (efficiency >= 0.4) return 'Average';
+    return 'Needs Improvement';
   }
 
   double _getTimeEfficiencyValue() {
@@ -588,13 +589,13 @@ class QuizResultsWidget extends StatelessWidget {
 
   String _getFeedbackMessage() {
     if (results.percentage >= 90) {
-      return 'أداء ممتاز! لقد أتقنت هذا الدرس بشكل رائع. استمر في هذا المستوى المتميز.';
+      return 'Excellent performance! You have mastered this lesson brilliantly. Keep up this outstanding level.';
     } else if (results.percentage >= 70) {
-      return 'أداء جيد جداً! لديك فهم قوي للمادة. راجع النقاط التي أخطأت فيها لتحسين أدائك أكثر.';
+      return 'Very good performance! You have a strong understanding of the material. Review the points you got wrong to improve your performance further.';
     } else if (results.percentage >= 60) {
-      return 'أداء مقبول. لقد نجحت ولكن هناك مجال للتحسين. راجع المادة مرة أخرى وحاول حل المزيد من التمارين.';
+      return 'Acceptable performance. You have passed but there is room for improvement. Review the material again and try solving more exercises.';
     } else {
-      return 'يحتاج الأداء إلى تحسين. ننصحك بمراجعة المادة بعناية والاستعانة بالمعلم أو المصادر الإضافية.';
+      return 'Performance needs improvement. We recommend reviewing the material carefully and seeking help from the teacher or additional resources.';
     }
   }
 

@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
+import '../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../domain/entities/academic_term_selection.dart';
 import '../../../../../domain/entities/classroom_grade_selection.dart';
 import '../../../../../domain/entities/education_system.dart';
@@ -136,6 +139,19 @@ class UserSelectionsModel {
       'Academic Term': selectedAcademicTerm?.name,
       if (isEducationalTrackRequired)
         'Educational Track': selectedEducationalTrack?.name,
+    };
+  }
+
+  // Get localized summary of selections
+  Map<String, String?> getLocalizedSelectionsSummary(BuildContext context) {
+    return {
+      S.of(context).education_system_selection: selectedEducationSystem?.name,
+      S.of(context).educational_stage_selection: selectedEducationalStage?.name,
+      S.of(context).classroom_selection: selectedClassroom?.name,
+      S.of(context).academic_term_selection: selectedAcademicTerm?.name,
+      if (isEducationalTrackRequired)
+        S.of(context).educational_track_selection:
+            selectedEducationalTrack?.name,
     };
   }
 

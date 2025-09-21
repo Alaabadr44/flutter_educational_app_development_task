@@ -61,7 +61,8 @@ class QuizHeader extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     TextWidget(
-                      text: 'السؤال ${currentQuestion + 1} من $totalQuestions',
+                      text:
+                          'Question ${currentQuestion + 1} of $totalQuestions',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -157,7 +158,7 @@ class QuizHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'التقدم',
+              'Progress',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey[600],
@@ -266,15 +267,15 @@ class QuizHeader extends StatelessWidget {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: const TextWidget(text: 'إنهاء الاختبار'),
+            title: const TextWidget(text: 'Exit Quiz'),
             content: const TextWidget(
               text:
-                  'هل أنت متأكد من رغبتك في إنهاء الاختبار؟ سيتم فقدان التقدم الحالي.',
+                  'Are you sure you want to exit the quiz? Current progress will be lost.',
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const TextWidget(text: 'إلغاء'),
+                child: const TextWidget(text: 'Cancel'),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -285,7 +286,7 @@ class QuizHeader extends StatelessWidget {
                   backgroundColor: AppColors.errorColor,
                   foregroundColor: Colors.white,
                 ),
-                child: const TextWidget(text: 'إنهاء'),
+                child: const TextWidget(text: 'Exit'),
               ),
             ],
           ),

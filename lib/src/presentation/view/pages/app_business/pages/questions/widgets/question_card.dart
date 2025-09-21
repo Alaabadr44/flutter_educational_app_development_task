@@ -133,7 +133,7 @@ class QuestionCard extends StatelessWidget {
             const SizedBox(height: 16),
           ],
 
-          // Description - تم إخفاؤه لأنه يكشف التلميح
+          // Description - hidden because it reveals the hint
           // if (question.descriptionText != null &&
           //     question.descriptionText!.isNotEmpty) ...[
           //   Container(
@@ -170,7 +170,7 @@ class QuestionCard extends StatelessWidget {
                 Icon(Icons.star, color: Colors.amber[600], size: 16),
                 const SizedBox(width: 4),
                 Text(
-                  '${question.point} نقاط',
+                  '${question.point} points',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -192,7 +192,7 @@ class QuestionCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const TextWidget(
-          text: 'اختر الإجابة الصحيحة:',
+          text: 'Choose the correct answer:',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -352,7 +352,7 @@ class QuestionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Text(
-                    'الإجابة الصحيحة',
+                    'Correct Answer',
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
@@ -389,7 +389,7 @@ class QuestionCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'تلميح',
+                'Hint',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -401,8 +401,8 @@ class QuestionCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             attempts >= maxAttempts
-                ? 'لقد استنفدت محاولاتك. الإجابة الصحيحة هي: ${_getCorrectAnswerText()}'
-                : 'تلميح: راجع السؤال بعناية. الإجابة الصحيحة هي: ${_getCorrectAnswerText()}',
+                ? 'You have exhausted your attempts. The correct answer is: ${_getCorrectAnswerText()}'
+                : 'Hint: Review the question carefully. The correct answer is: ${_getCorrectAnswerText()}',
             style: TextStyle(
               fontSize: 14,
               color: Colors.orange[700],
@@ -426,7 +426,7 @@ class QuestionCard extends StatelessWidget {
           Icon(Icons.repeat, size: 16, color: Colors.grey[600]),
           const SizedBox(width: 8),
           Text(
-            'المحاولة $attempts من $maxAttempts',
+            'Attempt $attempts of $maxAttempts',
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey[600],
@@ -438,7 +438,7 @@ class QuestionCard extends StatelessWidget {
             Icon(Icons.info_outline, size: 16, color: Colors.orange[600]),
             const SizedBox(width: 4),
             Text(
-              'تم عرض التلميح',
+              'Hint shown',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.orange[600],
@@ -517,8 +517,8 @@ class QuestionCard extends StatelessWidget {
   }
 
   bool _canSelectOption() {
-    // يمكن اختيار أي خيار بحرية قبل الـ submit
-    // هذا فقط للاختيار، ليس للـ submission
+    // Any option can be freely selected before submit
+    // This is only for selection, not for submission
     return true;
   }
 
@@ -526,10 +526,10 @@ class QuestionCard extends StatelessWidget {
     final options = _getOptions();
     final correctOption = options.firstWhere(
       (option) => option.key == question.correctSelect,
-      orElse: () => QuestionOption(key: '', text: 'غير محدد'),
+      orElse: () => QuestionOption(key: '', text: 'Not specified'),
     );
 
-    // تحديد الحرف (A, B, C, D)
+    // Determine the letter (A, B, C, D)
     final optionIndex = options.indexOf(correctOption);
     final optionLetter =
         optionIndex >= 0 ? String.fromCharCode(65 + optionIndex) : '?';

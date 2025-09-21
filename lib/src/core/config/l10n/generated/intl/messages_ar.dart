@@ -57,14 +57,23 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m15(time) => "في ${time}";
 
-  static String m16(timer) => "إعادة إرسال الرمز خلال ${timer} ثانية";
+  static String m16(attempts) => "${attempts} محاولات لكل سؤال";
 
-  static String m17(query) => "البحث عن: \"${query}\"";
+  static String m17(minutes) => "${minutes} دقيقة";
 
-  static String m18(size) =>
+  static String m18(count) => "${count} سؤال";
+
+  static String m19(timer) => "إعادة إرسال الرمز خلال ${timer} ثانية";
+
+  static String m20(query) => "البحث عن: \"${query}\"";
+
+  static String m21(size) =>
       "${Intl.select(size, {'small': 'صغير', 'large': 'كبير', 'medium': 'متوسط', 'other': 'they'})}";
 
-  static String m19(userName) => "مرحباً بعودتك، ${userName}!";
+  static String m22(currentStep, totalSteps) =>
+      "خطوة ${currentStep} من ${totalSteps}";
+
+  static String m23(userName) => "مرحباً بعودتك، ${userName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -73,8 +82,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "Medium": MessageLookupByLibrary.simpleMessage("م"),
     "Small": MessageLookupByLibrary.simpleMessage("ص"),
     "Vision_mission": MessageLookupByLibrary.simpleMessage("الرؤية والرسالة"),
+    "_comment_quiz": MessageLookupByLibrary.simpleMessage(
+      "النصوص المتعلقة بالاختبارات والأسئلة",
+    ),
+    "_comment_subjects": MessageLookupByLibrary.simpleMessage(
+      "نصوص صفحة المواد الدراسية",
+    ),
     "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+    "academic_term_selection": MessageLookupByLibrary.simpleMessage(
+      "اختيار الفصل الأكاديمي",
+    ),
     "accidents": MessageLookupByLibrary.simpleMessage("الحوادث"),
+    "accuracy": MessageLookupByLibrary.simpleMessage("الدقة"),
+    "accuracy_rate": MessageLookupByLibrary.simpleMessage("معدل الدقة"),
     "active_filters_showing_results": m0,
     "add_additional_notes": MessageLookupByLibrary.simpleMessage(
       "أضف أي ملاحظات إضافية حول العميل",
@@ -132,6 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "amount": MessageLookupByLibrary.simpleMessage("المبلغ"),
     "amount_paid": MessageLookupByLibrary.simpleMessage("المبلغ المدفوع"),
     "analysis_report": MessageLookupByLibrary.simpleMessage("تقرير التحليل"),
+    "answer_statistics": MessageLookupByLibrary.simpleMessage(
+      "إحصائيات الإجابات",
+    ),
     "appTitle": MessageLookupByLibrary.simpleMessage("ON"),
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "ar": MessageLookupByLibrary.simpleMessage("العربية"),
@@ -296,6 +319,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "citizen": MessageLookupByLibrary.simpleMessage("مواطن"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة *"),
     "civilId": MessageLookupByLibrary.simpleMessage("الهوية المدنية"),
+    "classroom": MessageLookupByLibrary.simpleMessage("الفصل"),
+    "classroom_selection": MessageLookupByLibrary.simpleMessage(
+      "اختيار الفصل الدراسي",
+    ),
     "clear": MessageLookupByLibrary.simpleMessage("مسح الكل"),
     "clear_all_notifications": MessageLookupByLibrary.simpleMessage("مسح الكل"),
     "click_to_see_details": MessageLookupByLibrary.simpleMessage(
@@ -319,8 +346,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "company_optional": MessageLookupByLibrary.simpleMessage(
       "الشركة (اختياري)",
     ),
+    "complete_selection": MessageLookupByLibrary.simpleMessage(
+      "إكمال الاختيار",
+    ),
     "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "completed_inspections": MessageLookupByLibrary.simpleMessage("مكتمل"),
+    "completed_lessons": MessageLookupByLibrary.simpleMessage(
+      "الدروس المكتملة",
+    ),
+    "completely_free_subject": MessageLookupByLibrary.simpleMessage(
+      "مادة مجانية بالكامل",
+    ),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "confirmNewPassword": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور الجديدة",
@@ -382,6 +418,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "contract_number": MessageLookupByLibrary.simpleMessage("رقم العقد"),
     "contract_required": MessageLookupByLibrary.simpleMessage("العقد *"),
+    "correct": MessageLookupByLibrary.simpleMessage("صحيح"),
+    "correct_answer": MessageLookupByLibrary.simpleMessage("إجابة صحيحة"),
     "correspondense": MessageLookupByLibrary.simpleMessage("المراسلات"),
     "cost": MessageLookupByLibrary.simpleMessage("التكلفة"),
     "country": MessageLookupByLibrary.simpleMessage("الدولة *"),
@@ -397,10 +435,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_new_inspection": MessageLookupByLibrary.simpleMessage(
       "إنشاء فحص جديد",
     ),
+    "created_date": MessageLookupByLibrary.simpleMessage("تاريخ الإنشاء"),
+    "created_date_label": MessageLookupByLibrary.simpleMessage("تاريخ الإنشاء"),
     "credit_or_debit_card_payment": MessageLookupByLibrary.simpleMessage(
       "الدفع بواسطة بطاقة ائتمان أو خصم",
     ),
     "currentTrips": MessageLookupByLibrary.simpleMessage("الحجوزات الحالية"),
+    "current_price": MessageLookupByLibrary.simpleMessage("السعر الحالي"),
     "customerVehicleDocuments": MessageLookupByLibrary.simpleMessage(
       "وثائق السيارة",
     ),
@@ -466,6 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "date_format": MessageLookupByLibrary.simpleMessage("التاريخ"),
     "date_package": m7,
+    "dates": MessageLookupByLibrary.simpleMessage("التواريخ"),
     "day": MessageLookupByLibrary.simpleMessage("يوم"),
     "deals": MessageLookupByLibrary.simpleMessage("الصفقات"),
     "deductible_insurance": MessageLookupByLibrary.simpleMessage(
@@ -493,6 +535,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "department": MessageLookupByLibrary.simpleMessage("القسم"),
     "describe_the_damage": MessageLookupByLibrary.simpleMessage("صف الضرر"),
+    "detailed_price": MessageLookupByLibrary.simpleMessage("السعر التفصيلي"),
     "determineTheCurrentLocation": MessageLookupByLibrary.simpleMessage(
       "تحديد الموقع الحالي",
     ),
@@ -520,6 +563,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "editing_customer": MessageLookupByLibrary.simpleMessage("تحرير العميل"),
     "education": MessageLookupByLibrary.simpleMessage("التعليم"),
+    "education_system_selection": MessageLookupByLibrary.simpleMessage(
+      "اختيار النظام التعليمي",
+    ),
+    "educational_stage_selection": MessageLookupByLibrary.simpleMessage(
+      "اختيار المرحلة التعليمية",
+    ),
+    "educational_track_selection": MessageLookupByLibrary.simpleMessage(
+      "اختيار المسار التعليمي",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "email_": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني *"),
     "email_address": MessageLookupByLibrary.simpleMessage(
@@ -573,6 +625,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_driving_license_number": MessageLookupByLibrary.simpleMessage(
       "أدخل رقم رخصة القيادة",
     ),
+    "enter_email_address": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني",
+    ),
     "enter_identity_passport_number": MessageLookupByLibrary.simpleMessage(
       "أدخل رقم الهوية/جواز السفر",
     ),
@@ -600,6 +655,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "enter_phone_for_otp": MessageLookupByLibrary.simpleMessage(
       "أدخل رقم هاتفك لتصلك رسالة تحقق لإعادة تعيين كلمة المرور",
+    ),
+    "enter_phone_number": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم هاتفك",
     ),
     "enter_place_license_issued": MessageLookupByLibrary.simpleMessage(
       "أدخل مكان إصدار الرخصة",
@@ -717,6 +775,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "found_302_message": MessageLookupByLibrary.simpleMessage(
       "تم نقل المورد مؤقتًا",
     ),
+    "free": MessageLookupByLibrary.simpleMessage("مجاني"),
     "frequently_asked_questions": MessageLookupByLibrary.simpleMessage(
       "الأسئلة الشائعة",
     ),
@@ -744,6 +803,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "المورد المطلوب غير متوفر بعد و تم حذفه بشكل دائم",
     ),
     "government": MessageLookupByLibrary.simpleMessage("المحافظة *"),
+    "grid_view": MessageLookupByLibrary.simpleMessage("عرض الشبكة"),
     "guest_body_msg": MessageLookupByLibrary.simpleMessage(
       "من فضلك قم بتسجيل الدخول أولا لرؤية الصفحة",
     ),
@@ -756,6 +816,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "height": MessageLookupByLibrary.simpleMessage("الطول"),
     "hello_user": m11,
     "help_and_support": MessageLookupByLibrary.simpleMessage("المساعدة والدعم"),
+    "hide_details": MessageLookupByLibrary.simpleMessage("إخفاء التفاصيل"),
     "hintAddress": MessageLookupByLibrary.simpleMessage("أدخل عنوانك"),
     "hintEmail": MessageLookupByLibrary.simpleMessage("أدخل بريدك الإلكتروني"),
     "hintLoginPassword": MessageLookupByLibrary.simpleMessage("كلمة مرورك"),
@@ -889,6 +950,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "length_required_411_message": MessageLookupByLibrary.simpleMessage(
       "لم يحدد الطلب طول محتواه، وهو مطلوب من المورد المطلوب",
     ),
+    "lesson_progress": MessageLookupByLibrary.simpleMessage("تقدم الدروس"),
+    "lessons": MessageLookupByLibrary.simpleMessage("الدروس"),
     "license_back": MessageLookupByLibrary.simpleMessage(
       "الرخصة (الوجه الخلفي)",
     ),
@@ -921,6 +984,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkValidationText": MessageLookupByLibrary.simpleMessage(
       "الروابط يجب ان تبدأ ب http:// او https://",
     ),
+    "list_view": MessageLookupByLibrary.simpleMessage("عرض القائمة"),
     "loading_inspection_details": MessageLookupByLibrary.simpleMessage(
       "جاري تحميل تفاصيل الفحص...",
     ),
@@ -1026,7 +1090,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_notifications_available": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات متاحة",
     ),
+    "no_optional_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "لا توجد مواد اختيارية متاحة لاختياراتك الحالية",
+    ),
     "no_phone": MessageLookupByLibrary.simpleMessage("لا يوجد هاتف"),
+    "no_required_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "لا توجد مواد إجبارية متاحة لاختياراتك الحالية",
+    ),
+    "no_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "لا توجد مواد متاحة",
+    ),
+    "no_subjects_data_available": MessageLookupByLibrary.simpleMessage(
+      "لا توجد بيانات مواد متاحة",
+    ),
     "not_acceptable_406_message": MessageLookupByLibrary.simpleMessage(
       "الخادم غير قادر على إنتاج إستجابة تتطابق مع القائمة المقبولة المحددة في رؤوس الطلب",
     ),
@@ -1042,7 +1118,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "not_modified_304_message": MessageLookupByLibrary.simpleMessage(
       "لم يتم تعديل المورد منذ الطلب السابق",
     ),
+    "not_selected": MessageLookupByLibrary.simpleMessage("لم يتم الاختيار"),
     "not_specified": MessageLookupByLibrary.simpleMessage("غير محدد"),
+    "not_subscribed": MessageLookupByLibrary.simpleMessage("غير مشترك"),
     "not_uploaded": MessageLookupByLibrary.simpleMessage("غير مرفوع"),
     "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
     "notes_field": MessageLookupByLibrary.simpleMessage("الملاحظات"),
@@ -1065,6 +1143,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "number_of_cylinders": MessageLookupByLibrary.simpleMessage(
       "عدد الأسطوانات *",
     ),
+    "of_separator": MessageLookupByLibrary.simpleMessage("من"),
     "offersAndRewards": MessageLookupByLibrary.simpleMessage(
       "العروض والمكافآت",
     ),
@@ -1090,6 +1169,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "on_boarding_title_third": MessageLookupByLibrary.simpleMessage(
       "استلام وتسليم مريح",
     ),
+    "optional_subjects": MessageLookupByLibrary.simpleMessage("اختياري"),
     "order_booked_successfully": MessageLookupByLibrary.simpleMessage(
       "تم حجز الطلب بنجاح",
     ),
@@ -1176,6 +1256,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "استعادة كلمة المرور؟",
     ),
     "pastTrips": MessageLookupByLibrary.simpleMessage("الحجوزات السابقة"),
+    "path": MessageLookupByLibrary.simpleMessage("المسار"),
     "payNow": MessageLookupByLibrary.simpleMessage("إدفع الأن"),
     "payment_by_check_or_cheque": MessageLookupByLibrary.simpleMessage(
       "الدفع بواسطة شيك",
@@ -1269,6 +1350,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "يتطلب الخادم أن يكون الطلب مشروطًا",
     ),
     "previous": MessageLookupByLibrary.simpleMessage("السابق"),
+    "previous_price": MessageLookupByLibrary.simpleMessage("السعر السابق"),
+    "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "primary_phone": MessageLookupByLibrary.simpleMessage("الهاتف الأساسي"),
     "privacyAndPolicy": MessageLookupByLibrary.simpleMessage(
       "الخصوصية والسياسة",
@@ -1293,6 +1376,48 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "purchase_price": MessageLookupByLibrary.simpleMessage("سعر الشراء"),
     "quick_actions": MessageLookupByLibrary.simpleMessage("الإجراءات السريعة"),
+    "quiz_allowed_attempts": MessageLookupByLibrary.simpleMessage(
+      "المحاولات المسموحة",
+    ),
+    "quiz_attempts_per_question": m16,
+    "quiz_back_button": MessageLookupByLibrary.simpleMessage("العودة"),
+    "quiz_back_to_lessons": MessageLookupByLibrary.simpleMessage(
+      "العودة للدروس",
+    ),
+    "quiz_cancel_button": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "quiz_duration": MessageLookupByLibrary.simpleMessage("مدة الاختبار"),
+    "quiz_duration_minutes": m17,
+    "quiz_exit_button": MessageLookupByLibrary.simpleMessage("إنهاء"),
+    "quiz_exit_confirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من رغبتك في إنهاء الاختبار والعودة؟",
+    ),
+    "quiz_exit_title": MessageLookupByLibrary.simpleMessage("إنهاء الاختبار"),
+    "quiz_finish_button": MessageLookupByLibrary.simpleMessage(
+      "إنهاء الاختبار",
+    ),
+    "quiz_lesson_name_fallback": MessageLookupByLibrary.simpleMessage("الدرس"),
+    "quiz_lesson_quiz_title": MessageLookupByLibrary.simpleMessage(
+      "اختبار الدرس",
+    ),
+    "quiz_name_fallback": MessageLookupByLibrary.simpleMessage("الاختبار"),
+    "quiz_next_button": MessageLookupByLibrary.simpleMessage("التالي"),
+    "quiz_no_questions_available": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أسئلة متاحة",
+    ),
+    "quiz_no_questions_found_for_lesson": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على أسئلة لهذا الدرس حالياً",
+    ),
+    "quiz_number_of_questions": MessageLookupByLibrary.simpleMessage(
+      "عدد الأسئلة",
+    ),
+    "quiz_passing_score": MessageLookupByLibrary.simpleMessage("درجة النجاح"),
+    "quiz_passing_score_percentage": MessageLookupByLibrary.simpleMessage(
+      "60% أو أكثر",
+    ),
+    "quiz_previous_button": MessageLookupByLibrary.simpleMessage("السابق"),
+    "quiz_questions_count": m18,
+    "quiz_start_button": MessageLookupByLibrary.simpleMessage("بدء الاختبار"),
+    "quiz_submit_answer": MessageLookupByLibrary.simpleMessage("إرسال الإجابة"),
     "read_more": MessageLookupByLibrary.simpleMessage("اقرأ المزيد"),
     "ready_to_login": MessageLookupByLibrary.simpleMessage(
       "جاهز لتسجيل الدخول ببيانات الاختبار",
@@ -1315,6 +1440,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "registration_expiry_date": MessageLookupByLibrary.simpleMessage(
       "تاريخ انتهاء التسجيل *",
     ),
+    "regular_subject": MessageLookupByLibrary.simpleMessage("مادة عادية"),
     "remaining_amount": MessageLookupByLibrary.simpleMessage("المبلغ المتبقي"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
@@ -1347,10 +1473,11 @@ class MessageLookup extends MessageLookupByLibrary {
           "لا يمكن توفير النطاق المطلوب من قبل الخادم",
         ),
     "required_field": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
+    "required_subjects": MessageLookupByLibrary.simpleMessage("إجباري"),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "resendIn": MessageLookupByLibrary.simpleMessage("إعادة إرسال في"),
     "resendOtp": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
-    "resend_code_in": m16,
+    "resend_code_in": m19,
     "reservations_management": MessageLookupByLibrary.simpleMessage(
       "إدارة الحجوزات",
     ),
@@ -1387,14 +1514,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "search_placeholder": MessageLookupByLibrary.simpleMessage(
       "البحث بالاسم، الهاتف، أو البريد الإلكتروني...",
     ),
-    "searching_for": m17,
+    "searching_for": m20,
     "seats_count": MessageLookupByLibrary.simpleMessage("عدد المقاعد *"),
     "see_other_303_message": MessageLookupByLibrary.simpleMessage(
       "يمكن العثور على الاستجابة تحت URI مختلف",
     ),
     "selectService": MessageLookupByLibrary.simpleMessage("اختر الخدمة"),
+    "select_academic_term": MessageLookupByLibrary.simpleMessage(
+      "اختر الفصل الأكاديمي",
+    ),
     "select_associated_company": MessageLookupByLibrary.simpleMessage(
       "اختر الشركة المرتبطة",
+    ),
+    "select_classroom_grade": MessageLookupByLibrary.simpleMessage(
+      "اختر فصلك أو صفك",
     ),
     "select_contract": MessageLookupByLibrary.simpleMessage("اختر عقد الإيجار"),
     "select_country_required": MessageLookupByLibrary.simpleMessage(
@@ -1402,6 +1535,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "select_customer_classification": MessageLookupByLibrary.simpleMessage(
       "اختر تصنيف العميل",
+    ),
+    "select_education_system": MessageLookupByLibrary.simpleMessage(
+      "اختر نظامك التعليمي",
+    ),
+    "select_educational_stage": MessageLookupByLibrary.simpleMessage(
+      "اختر مرحلتك التعليمية",
+    ),
+    "select_educational_track": MessageLookupByLibrary.simpleMessage(
+      "اختر مسارك التعليمي",
     ),
     "select_gender_required": MessageLookupByLibrary.simpleMessage(
       "اختر الجنس *",
@@ -1432,11 +1574,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "share": MessageLookupByLibrary.simpleMessage("مشاركة"),
     "share_failed": MessageLookupByLibrary.simpleMessage("فشلت المشاركة"),
     "share_report": MessageLookupByLibrary.simpleMessage("مشاركة التقرير"),
+    "show_details": MessageLookupByLibrary.simpleMessage("إظهار التفاصيل"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signUp": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-    "size": m18,
+    "size": m21,
     "staff_management": MessageLookupByLibrary.simpleMessage("إدارة الموظفين"),
+    "stage": MessageLookupByLibrary.simpleMessage("المرحلة"),
     "state": MessageLookupByLibrary.simpleMessage("الولاية"),
     "statistics": MessageLookupByLibrary.simpleMessage("الإحصائيات"),
     "status_completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
@@ -1444,17 +1588,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "status_in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
     "status_pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "step": MessageLookupByLibrary.simpleMessage("خطوة"),
+    "step_of": m22,
     "steps_completed": MessageLookupByLibrary.simpleMessage("خطوات مكتملة"),
     "storage_permission_denied": MessageLookupByLibrary.simpleMessage(
       "مطلوب إذن التخزين لتحميل الملفات",
     ),
+    "study_unit": MessageLookupByLibrary.simpleMessage("وحدة دراسية"),
+    "subject_details": MessageLookupByLibrary.simpleMessage("تفاصيل المادة"),
+    "subject_details_section": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل المادة",
+    ),
+    "subject_name_not_available": MessageLookupByLibrary.simpleMessage(
+      "اسم المادة غير متوفر",
+    ),
+    "subjects": MessageLookupByLibrary.simpleMessage("المواد"),
+    "subscribe_now": MessageLookupByLibrary.simpleMessage("اشترك الآن"),
+    "subscribed": MessageLookupByLibrary.simpleMessage("مشترك"),
+    "subscription_status": MessageLookupByLibrary.simpleMessage(
+      "حالة الاشتراك",
+    ),
     "switching_protocols_101_message": MessageLookupByLibrary.simpleMessage(
       "جارٍ تبديل البروتوكولات",
     ),
+    "system": MessageLookupByLibrary.simpleMessage("النظام"),
+    "system_information": MessageLookupByLibrary.simpleMessage(
+      "معلومات النظام",
+    ),
     "system_notification": MessageLookupByLibrary.simpleMessage("النظام"),
+    "teacher_price": MessageLookupByLibrary.simpleMessage("سعر المعلم"),
     "temporary_redirect_307_message": MessageLookupByLibrary.simpleMessage(
       "المورد المطلوب متاح مؤقتًا في عنوان URI مختلف",
     ),
+    "term": MessageLookupByLibrary.simpleMessage("الفصل الدراسي"),
     "terms": MessageLookupByLibrary.simpleMessage("الشروط و الأحكام"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "شروط الخدمة لهذه الرحلة",
@@ -1504,6 +1669,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "نوع ناقل الحركة *",
     ),
     "trip_details": MessageLookupByLibrary.simpleMessage("تفاصيل الرحلة"),
+    "type": MessageLookupByLibrary.simpleMessage("النوع"),
     "unauthorized_401_message": MessageLookupByLibrary.simpleMessage(
       "الطلب يتطلب المصادقة أو المستخدم ليس لديه الصلاحية للوصول إلى المورد",
     ),
@@ -1515,6 +1681,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unknown_error_message": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ غير معروف. يرجى المحاولة مرة أخرى في وقت لاحق",
     ),
+    "unknown_subject": MessageLookupByLibrary.simpleMessage("مادة غير معروفة"),
     "unprocessable_entity_422_message": MessageLookupByLibrary.simpleMessage(
       "الطلب صحيح التنسيق ولكن لا يمكن اتباعه بسبب أخطاء دلالية",
     ),
@@ -1554,6 +1721,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "update_personal_information": MessageLookupByLibrary.simpleMessage(
       "تحديث المعلومات الشخصية",
     ),
+    "updated_date": MessageLookupByLibrary.simpleMessage("تاريخ التحديث"),
+    "updated_date_label": MessageLookupByLibrary.simpleMessage("تاريخ التحديث"),
     "upgrade_required_426_message": MessageLookupByLibrary.simpleMessage(
       "يجب على العميل التحويل إلى بروتوكول مختلف مثل TLS/1.0، الذي يتم تقديمه في حقل ترقية الرأسية",
     ),
@@ -1637,6 +1806,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "view_inspection_report": MessageLookupByLibrary.simpleMessage(
       "عرض تقرير الفحص",
     ),
+    "view_lessons": MessageLookupByLibrary.simpleMessage("عرض الدروس"),
     "view_payment_details": MessageLookupByLibrary.simpleMessage(
       "عرض معلومات الدفعة",
     ),
@@ -1648,7 +1818,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "voucher_field_hint": MessageLookupByLibrary.simpleMessage("رمز القسيمة"),
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
     "welcome_back": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
-    "welcome_back_user": m19,
+    "welcome_back_user": m23,
     "welcome_get_started": MessageLookupByLibrary.simpleMessage(
       "مرحبًا! لنبدأ",
     ),
@@ -1661,10 +1831,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeTheReasonOfCancellation": MessageLookupByLibrary.simpleMessage(
       "اكتب سبب الإلغاء",
     ),
+    "wrong": MessageLookupByLibrary.simpleMessage("خطأ"),
+    "wrong_answer": MessageLookupByLibrary.simpleMessage("إجابة خاطئة"),
     "yes": MessageLookupByLibrary.simpleMessage("نعم"),
     "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
+    "you_are_subscribed": MessageLookupByLibrary.simpleMessage(
+      "أنت مشترك في هذه المادة",
+    ),
     "yourAccountIsReadyToUse": MessageLookupByLibrary.simpleMessage(
       "حسابك جاهز للاستخدام. سيتم تحويلك إلى الصفحة الرئيسية خلال ثوانٍ قليلة..",
     ),
+    "your_selections": MessageLookupByLibrary.simpleMessage("اختياراتك"),
   };
 }

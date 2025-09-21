@@ -1,3 +1,4 @@
+import '../services/setting_service.dart';
 import 'extension.dart';
 
 import '../config/injector.dart';
@@ -59,13 +60,12 @@ Map<String, dynamic> get apiHeader {
   }
 
   // Add language if available
-  // if (SettingService.getLocale?.languageCode != null) {
-  //   headers['Accept-Language'] = SettingService.getLocale?.languageCode;
-  // }
+  if (SettingService.getLocale?.languageCode != null) {
+    headers['Accept-Language'] = SettingService.getLocale?.languageCode;
+  }
 
   return headers;
 }
-
 
 String? get _getToken {
   String? token = UserService.accessToken;

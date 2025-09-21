@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../../../domain/entities/subjects_data.dart';
 import '../../../../../common/text_widget.dart';
 
@@ -91,7 +92,8 @@ class _SubjectCardState extends State<SubjectCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: widget.subject.name ?? 'Unknown Subject',
+                          text:
+                              widget.subject.name ?? S.current.unknown_subject,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
@@ -168,7 +170,7 @@ class _SubjectCardState extends State<SubjectCard> {
               const SizedBox(height: 16),
 
               // Basic info (always visible)
-              _buildBasicInfo(),
+              _buildBasicInfo(context),
 
               const SizedBox(height: 12),
 
@@ -185,7 +187,7 @@ class _SubjectCardState extends State<SubjectCard> {
                         ? Column(
                           children: [
                             const SizedBox(height: 16),
-                            _buildExpandedContent(),
+                            _buildExpandedContent(context),
                           ],
                         )
                         : null,
@@ -208,22 +210,22 @@ class _SubjectCardState extends State<SubjectCard> {
     return 'https://taseese.org$imagePath';
   }
 
-  Widget _buildBasicInfo() {
+  Widget _buildBasicInfo(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Price section with Arabic styling
-        if (widget.showPrice) _buildCompactPriceSection(),
+        if (widget.showPrice) _buildCompactPriceSection(context),
 
         if (widget.showProgress && widget.subject.lessonsCount != null) ...[
           const SizedBox(height: 8),
-          _buildCompactProgress(),
+          _buildCompactProgress(context),
         ],
       ],
     );
   }
 
-  Widget _buildCompactPriceSection() {
+  Widget _buildCompactPriceSection(BuildContext context) {
     if (widget.subject.price == null) return const SizedBox.shrink();
 
     final hasDiscount =
@@ -246,7 +248,7 @@ class _SubjectCardState extends State<SubjectCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'السعر',
+                S.current.price,
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.grey[800],
@@ -258,7 +260,7 @@ class _SubjectCardState extends State<SubjectCard> {
                 children: [
                   if (widget.subject.price! > 0) ...[
                     Text(
-                      '${widget.subject.price} ر.س',
+                      '${widget.subject.price} SAR',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
@@ -268,7 +270,7 @@ class _SubjectCardState extends State<SubjectCard> {
                     if (hasDiscount) ...[
                       const SizedBox(width: 8),
                       Text(
-                        '${widget.subject.oldPrice} ر.س',
+                        '${widget.subject.oldPrice} SAR',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey[500],
@@ -286,8 +288,8 @@ class _SubjectCardState extends State<SubjectCard> {
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        'مجانية',
+                      child: Text(
+                        S.current.free,
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -315,7 +317,9 @@ class _SubjectCardState extends State<SubjectCard> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  widget.subject.isSubscribe! ? 'مشترك' : 'غير مشترك',
+                  widget.subject.isSubscribe!
+                      ? S.current.subscribed
+                      : S.current.not_subscribed,
                   style: TextStyle(
                     fontSize: 11,
                     color:
@@ -332,7 +336,7 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildCompactProgress() {
+  Widget _buildCompactProgress(BuildContext context) {
     final lessonsCount = widget.subject.lessonsCount ?? 0;
     final finishedLessons = widget.subject.finishesLessonsCount ?? 0;
     final progress = lessonsCount > 0 ? finishedLessons / lessonsCount : 0.0;
@@ -351,7 +355,7 @@ class _SubjectCardState extends State<SubjectCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'التقدم في الدروس',
+                S.current.lesson_progress,
                 style: TextStyle(
                   fontSize: 13,
                   color: Colors.black87,
@@ -436,7 +440,7 @@ class _SubjectCardState extends State<SubjectCard> {
               ),
               const SizedBox(width: 8),
               Text(
-                isExpanded ? 'إخفاء التفاصيل' : 'عرض التفاصيل',
+                isExpanded ? S.current.hide_details : S.current.show_details,
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
@@ -458,36 +462,36 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildExpandedContent() {
+  Widget _buildExpandedContent(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Full price section with discount
         if (widget.showPrice) ...[
-          _buildFullPriceSection(),
+          _buildFullPriceSection(context),
           const SizedBox(height: 16),
         ],
 
         // Subscription button or detailed stats
-        _buildSubscriptionSection(),
+        _buildSubscriptionSection(context),
 
         // Comprehensive information
         if (_hasSubjectDetails() || _hasIdData()) ...[
           const SizedBox(height: 16),
-          _buildComprehensiveInfo(),
+          _buildComprehensiveInfo(context),
         ],
 
         // Answer statistics
         if (widget.subject.trueAnswersCount != null ||
             widget.subject.falseAnswersCount != null) ...[
           const SizedBox(height: 16),
-          _buildStatsSection(),
+          _buildStatsSection(context),
         ],
       ],
     );
   }
 
-  Widget _buildFullPriceSection() {
+  Widget _buildFullPriceSection(BuildContext context) {
     if (widget.subject.price == null) return const SizedBox.shrink();
 
     final hasDiscount =
@@ -510,7 +514,7 @@ class _SubjectCardState extends State<SubjectCard> {
               Icon(Icons.monetization_on, size: 16, color: _getSubjectColor()),
               const SizedBox(width: 6),
               Text(
-                'السعر التفصيلي',
+                S.current.detailed_price,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -524,9 +528,9 @@ class _SubjectCardState extends State<SubjectCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('السعر الحالي', style: TextStyle(fontSize: 13)),
+                Text(S.current.current_price, style: TextStyle(fontSize: 13)),
                 Text(
-                  '${widget.subject.price} ر.س',
+                  '${widget.subject.price} SAR',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -540,9 +544,12 @@ class _SubjectCardState extends State<SubjectCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('السعر السابق', style: TextStyle(fontSize: 13)),
                   Text(
-                    '${widget.subject.oldPrice} ر.س',
+                    S.current.previous_price,
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  Text(
+                    '${widget.subject.oldPrice} SAR',
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.grey,
@@ -559,7 +566,7 @@ class _SubjectCardState extends State<SubjectCard> {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
-                  'خصم ${_calculateDiscountPercentage()}%',
+                  '${S.current.discount} ${_calculateDiscountPercentage()}%',
                   style: const TextStyle(
                     fontSize: 12,
                     color: Colors.red,
@@ -574,11 +581,11 @@ class _SubjectCardState extends State<SubjectCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'سعر المعلم',
+                    S.current.teacher_price,
                     style: TextStyle(fontSize: 13, color: Colors.amber[700]),
                   ),
                   Text(
-                    '${widget.subject.teacherPrice} ر.س',
+                    '${widget.subject.teacherPrice} SAR',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.amber[700],
@@ -594,7 +601,7 @@ class _SubjectCardState extends State<SubjectCard> {
                 Icon(Icons.celebration, size: 14, color: Colors.green[700]),
                 const SizedBox(width: 6),
                 Text(
-                  'مادة مجانية بالكامل',
+                  S.current.completely_free_subject,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.green[700],
@@ -609,7 +616,7 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildSubscriptionSection() {
+  Widget _buildSubscriptionSection(BuildContext context) {
     if (widget.subject.isSubscribe == false) {
       return SizedBox(
         width: double.infinity,
@@ -627,8 +634,8 @@ class _SubjectCardState extends State<SubjectCard> {
             elevation: 0,
           ),
           icon: const Icon(Icons.add_shopping_cart, size: 16),
-          label: const Text(
-            'اشترك الآن',
+          label: Text(
+            S.current.subscribe_now,
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
         ),
@@ -649,7 +656,7 @@ class _SubjectCardState extends State<SubjectCard> {
                 Icon(Icons.verified, size: 16, color: Colors.green[700]),
                 const SizedBox(width: 6),
                 Text(
-                  'أنت مشترك في هذه المادة',
+                  S.current.you_are_subscribed,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.green[700],
@@ -675,7 +682,7 @@ class _SubjectCardState extends State<SubjectCard> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '${widget.subject.trueAnswersCount} صحيح',
+                          '${widget.subject.trueAnswersCount} ${S.current.correct}',
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.green[600],
@@ -690,7 +697,7 @@ class _SubjectCardState extends State<SubjectCard> {
                         Icon(Icons.cancel, size: 14, color: Colors.red[600]),
                         const SizedBox(width: 4),
                         Text(
-                          '${widget.subject.falseAnswersCount} خطأ',
+                          '${widget.subject.falseAnswersCount} ${S.current.wrong}',
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.red[600],
@@ -707,25 +714,25 @@ class _SubjectCardState extends State<SubjectCard> {
     }
   }
 
-  Widget _buildComprehensiveInfo() {
+  Widget _buildComprehensiveInfo(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (_hasSubjectDetails()) ...[
-          _buildSectionTitle('تفاصيل المادة'),
+          _buildSectionTitle(S.current.subject_details_section),
           const SizedBox(height: 8),
-          _buildDetailsGrid(),
+          _buildDetailsGrid(context),
         ],
         if (_hasIdData()) ...[
           const SizedBox(height: 12),
-          _buildSectionTitle('معلومات النظام'),
+          _buildSectionTitle(S.current.system_information),
           const SizedBox(height: 8),
-          _buildIdsSection(),
+          _buildIdsSection(context),
         ],
         if (widget.subject.createdAt != null ||
             widget.subject.updatedAt != null) ...[
           const SizedBox(height: 12),
-          _buildTimestampsSection(),
+          _buildTimestampsSection(context),
         ],
       ],
     );
@@ -755,18 +762,21 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildDetailsGrid() {
+  Widget _buildDetailsGrid(BuildContext context) {
     final details = <String, String>{};
 
     if (widget.subject.id != null) details['ID'] = '#${widget.subject.id}';
     if (widget.subject.isUnit != null) {
-      details['النوع'] = widget.subject.isUnit! ? 'وحدة دراسية' : 'مادة عادية';
+      details[S.current.type] =
+          widget.subject.isUnit!
+              ? S.current.study_unit
+              : S.current.regular_subject;
     }
     if (widget.subject.lessonsCount != null) {
-      details['الدروس'] = '${widget.subject.lessonsCount}';
+      details[S.current.lessons] = '${widget.subject.lessonsCount}';
     }
     if (widget.subject.finishesLessonsCount != null) {
-      details['مكتمل'] = '${widget.subject.finishesLessonsCount}';
+      details[S.current.completed] = '${widget.subject.finishesLessonsCount}';
     }
 
     return Wrap(
@@ -811,13 +821,13 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildIdsSection() {
+  Widget _buildIdsSection(BuildContext context) {
     final ids = <String, int?>{
-      'النظام': widget.subject.systemId,
-      'المرحلة': widget.subject.stageId,
-      'الصف': widget.subject.classroomId,
-      'الفصل': widget.subject.termId,
-      'المسار': widget.subject.pathId,
+      S.current.system: widget.subject.systemId,
+      S.current.stage: widget.subject.stageId,
+      S.current.classroom: widget.subject.classroomId,
+      S.current.term: widget.subject.termId,
+      S.current.path: widget.subject.pathId,
     };
 
     return Wrap(
@@ -850,7 +860,7 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildTimestampsSection() {
+  Widget _buildTimestampsSection(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -871,7 +881,7 @@ class _SubjectCardState extends State<SubjectCard> {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'تاريخ الإنشاء: ${_formatDate(widget.subject.createdAt!)}',
+                  '${S.current.created_date_label}: ${_formatDate(widget.subject.createdAt!)}',
                   style: TextStyle(fontSize: 10, color: Colors.grey[600]),
                 ),
               ],
@@ -884,7 +894,7 @@ class _SubjectCardState extends State<SubjectCard> {
                 Icon(Icons.update, size: 12, color: Colors.grey[600]),
                 const SizedBox(width: 4),
                 Text(
-                  'تاريخ التحديث: ${_formatDate(widget.subject.updatedAt!)}',
+                  '${S.current.updated_date_label}: ${_formatDate(widget.subject.updatedAt!)}',
                   style: TextStyle(fontSize: 10, color: Colors.grey[600]),
                 ),
               ],
@@ -895,7 +905,7 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildStatsSection() {
+  Widget _buildStatsSection(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -911,7 +921,7 @@ class _SubjectCardState extends State<SubjectCard> {
               Icon(Icons.analytics_outlined, size: 14, color: Colors.blue[700]),
               const SizedBox(width: 6),
               Text(
-                'إحصائيات الإجابات',
+                S.current.answer_statistics,
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
@@ -925,8 +935,9 @@ class _SubjectCardState extends State<SubjectCard> {
             children: [
               if (widget.subject.trueAnswersCount != null) ...[
                 _buildStatItem(
+                  context,
                   icon: Icons.check_circle,
-                  label: 'صحيح',
+                  label: S.current.correct,
                   value: '${widget.subject.trueAnswersCount}',
                   color: Colors.green[600]!,
                 ),
@@ -934,8 +945,9 @@ class _SubjectCardState extends State<SubjectCard> {
               ],
               if (widget.subject.falseAnswersCount != null) ...[
                 _buildStatItem(
+                  context,
                   icon: Icons.cancel,
-                  label: 'خطأ',
+                  label: S.current.wrong,
                   value: '${widget.subject.falseAnswersCount}',
                   color: Colors.red[600]!,
                 ),
@@ -943,7 +955,7 @@ class _SubjectCardState extends State<SubjectCard> {
               ],
               if (widget.subject.trueAnswersCount != null &&
                   widget.subject.falseAnswersCount != null) ...[
-                _buildAccuracyRate(),
+                _buildAccuracyRate(context),
               ],
             ],
           ),
@@ -952,7 +964,8 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildStatItem({
+  Widget _buildStatItem(
+    BuildContext context, {
     required IconData icon,
     required String label,
     required String value,
@@ -984,7 +997,7 @@ class _SubjectCardState extends State<SubjectCard> {
     );
   }
 
-  Widget _buildAccuracyRate() {
+  Widget _buildAccuracyRate(BuildContext context) {
     final correct = widget.subject.trueAnswersCount ?? 0;
     final incorrect = widget.subject.falseAnswersCount ?? 0;
     final total = correct + incorrect;
@@ -1010,7 +1023,7 @@ class _SubjectCardState extends State<SubjectCard> {
             ),
           ),
           Text(
-            'دقة',
+            S.current.accuracy,
             style: TextStyle(
               fontSize: 8,
               color: accuracy >= 70 ? Colors.green[600] : Colors.orange[600],

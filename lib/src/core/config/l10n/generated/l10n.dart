@@ -269,9 +269,9 @@ class S {
     return Intl.message('ID Number', name: 'idNumber', desc: '', args: []);
   }
 
-  /// `E-mail`
+  /// `Email`
   String get email {
-    return Intl.message('E-mail', name: 'email', desc: '', args: []);
+    return Intl.message('Email', name: 'email', desc: '', args: []);
   }
 
   /// `Enter your Email`
@@ -779,6 +779,216 @@ class S {
     return Intl.message(
       'It must not be empty, and the number must not start with a zero',
       name: 'validator_field_phone_length_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Back`
+  String get welcome_back {
+    return Intl.message(
+      'Welcome Back',
+      name: 'welcome_back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please sign in to your account`
+  String get please_sign_in_to_your_account {
+    return Intl.message(
+      'Please sign in to your account',
+      name: 'please_sign_in_to_your_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phone {
+    return Intl.message('Phone', name: 'phone', desc: '', args: []);
+  }
+
+  /// `Phone number`
+  String get phone_number {
+    return Intl.message(
+      'Phone number',
+      name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address`
+  String get email_address {
+    return Intl.message(
+      'Email Address',
+      name: 'email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enter_phone_number {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enter_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address`
+  String get enter_email_address {
+    return Intl.message(
+      'Enter your email address',
+      name: 'enter_email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember me`
+  String get remember_me {
+    return Intl.message('Remember me', name: 'remember_me', desc: '', args: []);
+  }
+
+  /// `Test credentials filled successfully!`
+  String get test_credentials_filled {
+    return Intl.message(
+      'Test credentials filled successfully!',
+      name: 'test_credentials_filled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready to login with test credentials`
+  String get ready_to_login {
+    return Intl.message(
+      'Ready to login with test credentials',
+      name: 'ready_to_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill Test Data`
+  String get fill_test_data {
+    return Intl.message(
+      'Fill Test Data',
+      name: 'fill_test_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill with test credentials`
+  String get fill_with_test_credentials {
+    return Intl.message(
+      'Fill with test credentials',
+      name: 'fill_with_test_credentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Education System Selection`
+  String get education_system_selection {
+    return Intl.message(
+      'Education System Selection',
+      name: 'education_system_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your education system`
+  String get select_education_system {
+    return Intl.message(
+      'Select your education system',
+      name: 'select_education_system',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Educational Stage Selection`
+  String get educational_stage_selection {
+    return Intl.message(
+      'Educational Stage Selection',
+      name: 'educational_stage_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your educational stage`
+  String get select_educational_stage {
+    return Intl.message(
+      'Select your educational stage',
+      name: 'select_educational_stage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Classroom Selection`
+  String get classroom_selection {
+    return Intl.message(
+      'Classroom Selection',
+      name: 'classroom_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your classroom or grade`
+  String get select_classroom_grade {
+    return Intl.message(
+      'Select your classroom or grade',
+      name: 'select_classroom_grade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Academic Term Selection`
+  String get academic_term_selection {
+    return Intl.message(
+      'Academic Term Selection',
+      name: 'academic_term_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the academic term`
+  String get select_academic_term {
+    return Intl.message(
+      'Select the academic term',
+      name: 'select_academic_term',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Educational Track Selection`
+  String get educational_track_selection {
+    return Intl.message(
+      'Educational Track Selection',
+      name: 'educational_track_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your educational track`
+  String get select_educational_track {
+    return Intl.message(
+      'Select your educational track',
+      name: 'select_educational_track',
       desc: '',
       args: [],
     );
@@ -2276,11 +2486,6 @@ class S {
     return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
   }
 
-  /// `Phone`
-  String get phone {
-    return Intl.message('Phone', name: 'phone', desc: '', args: []);
-  }
-
   /// `Pickup Date / Time`
   String get pickup_date_time {
     return Intl.message(
@@ -3006,26 +3211,6 @@ class S {
     );
   }
 
-  /// `Welcome Back`
-  String get welcome_back {
-    return Intl.message(
-      'Welcome Back',
-      name: 'welcome_back',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Phone number`
-  String get phone_number {
-    return Intl.message(
-      'Phone number',
-      name: 'phone_number',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Forgot your password?`
   String get forgot_your_password {
     return Intl.message(
@@ -3616,11 +3801,6 @@ class S {
     );
   }
 
-  /// `Remember me`
-  String get remember_me {
-    return Intl.message('Remember me', name: 'remember_me', desc: '', args: []);
-  }
-
   /// `Vehicle characteristics`
   String get vehicle_characteristics {
     return Intl.message(
@@ -3749,16 +3929,6 @@ class S {
   /// `Gender`
   String get gender {
     return Intl.message('Gender', name: 'gender', desc: '', args: []);
-  }
-
-  /// `Email Address`
-  String get email_address {
-    return Intl.message(
-      'Email Address',
-      name: 'email_address',
-      desc: '',
-      args: [],
-    );
   }
 
   /// `Address`
@@ -7171,61 +7341,11 @@ class S {
     );
   }
 
-  /// `Please sign in to your account`
-  String get please_sign_in_to_your_account {
-    return Intl.message(
-      'Please sign in to your account',
-      name: 'please_sign_in_to_your_account',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Fill Test Data`
-  String get fill_test_data {
-    return Intl.message(
-      'Fill Test Data',
-      name: 'fill_test_data',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Fill with test credentials`
-  String get fill_with_test_credentials {
-    return Intl.message(
-      'Fill with test credentials',
-      name: 'fill_with_test_credentials',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Test credentials filled successfully!`
-  String get test_credentials_filled {
-    return Intl.message(
-      'Test credentials filled successfully!',
-      name: 'test_credentials_filled',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Test data loaded into form fields`
   String get test_data_loaded {
     return Intl.message(
       'Test data loaded into form fields',
       name: 'test_data_loaded',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ready to login with test credentials`
-  String get ready_to_login {
-    return Intl.message(
-      'Ready to login with test credentials',
-      name: 'ready_to_login',
       desc: '',
       args: [],
     );
@@ -7334,6 +7454,721 @@ class S {
   /// `University`
   String get university {
     return Intl.message('University', name: 'university', desc: '', args: []);
+  }
+
+  /// `Step {currentStep} of {totalSteps}`
+  String step_of(int currentStep, int totalSteps) {
+    return Intl.message(
+      'Step $currentStep of $totalSteps',
+      name: 'step_of',
+      desc: 'Step counter display',
+      args: [currentStep, totalSteps],
+    );
+  }
+
+  /// `Complete Selection`
+  String get complete_selection {
+    return Intl.message(
+      'Complete Selection',
+      name: 'complete_selection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grid View`
+  String get grid_view {
+    return Intl.message('Grid View', name: 'grid_view', desc: '', args: []);
+  }
+
+  /// `List View`
+  String get list_view {
+    return Intl.message('List View', name: 'list_view', desc: '', args: []);
+  }
+
+  /// `Quiz and Questions related strings`
+  String get _comment_quiz {
+    return Intl.message(
+      'Quiz and Questions related strings',
+      name: '_comment_quiz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No questions available`
+  String get quiz_no_questions_available {
+    return Intl.message(
+      'No questions available',
+      name: 'quiz_no_questions_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No questions found for this lesson currently`
+  String get quiz_no_questions_found_for_lesson {
+    return Intl.message(
+      'No questions found for this lesson currently',
+      name: 'quiz_no_questions_found_for_lesson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get quiz_back_button {
+    return Intl.message('Back', name: 'quiz_back_button', desc: '', args: []);
+  }
+
+  /// `Lesson Quiz`
+  String get quiz_lesson_quiz_title {
+    return Intl.message(
+      'Lesson Quiz',
+      name: 'quiz_lesson_quiz_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of Questions`
+  String get quiz_number_of_questions {
+    return Intl.message(
+      'Number of Questions',
+      name: 'quiz_number_of_questions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} questions`
+  String quiz_questions_count(int count) {
+    return Intl.message(
+      '$count questions',
+      name: 'quiz_questions_count',
+      desc: 'Display number of questions',
+      args: [count],
+    );
+  }
+
+  /// `Quiz Duration`
+  String get quiz_duration {
+    return Intl.message(
+      'Quiz Duration',
+      name: 'quiz_duration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{minutes} minutes`
+  String quiz_duration_minutes(int minutes) {
+    return Intl.message(
+      '$minutes minutes',
+      name: 'quiz_duration_minutes',
+      desc: 'Display quiz duration in minutes',
+      args: [minutes],
+    );
+  }
+
+  /// `Allowed Attempts`
+  String get quiz_allowed_attempts {
+    return Intl.message(
+      'Allowed Attempts',
+      name: 'quiz_allowed_attempts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{attempts} attempts per question`
+  String quiz_attempts_per_question(int attempts) {
+    return Intl.message(
+      '$attempts attempts per question',
+      name: 'quiz_attempts_per_question',
+      desc: 'Display number of attempts per question',
+      args: [attempts],
+    );
+  }
+
+  /// `Passing Score`
+  String get quiz_passing_score {
+    return Intl.message(
+      'Passing Score',
+      name: 'quiz_passing_score',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `60% or more`
+  String get quiz_passing_score_percentage {
+    return Intl.message(
+      '60% or more',
+      name: 'quiz_passing_score_percentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Quiz`
+  String get quiz_start_button {
+    return Intl.message(
+      'Start Quiz',
+      name: 'quiz_start_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Lessons`
+  String get quiz_back_to_lessons {
+    return Intl.message(
+      'Back to Lessons',
+      name: 'quiz_back_to_lessons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lesson`
+  String get quiz_lesson_name_fallback {
+    return Intl.message(
+      'Lesson',
+      name: 'quiz_lesson_name_fallback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quiz`
+  String get quiz_name_fallback {
+    return Intl.message('Quiz', name: 'quiz_name_fallback', desc: '', args: []);
+  }
+
+  /// `Previous`
+  String get quiz_previous_button {
+    return Intl.message(
+      'Previous',
+      name: 'quiz_previous_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Answer`
+  String get quiz_submit_answer {
+    return Intl.message(
+      'Submit Answer',
+      name: 'quiz_submit_answer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get quiz_next_button {
+    return Intl.message('Next', name: 'quiz_next_button', desc: '', args: []);
+  }
+
+  /// `Finish Quiz`
+  String get quiz_finish_button {
+    return Intl.message(
+      'Finish Quiz',
+      name: 'quiz_finish_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit Quiz`
+  String get quiz_exit_title {
+    return Intl.message(
+      'Exit Quiz',
+      name: 'quiz_exit_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to exit the quiz and go back?`
+  String get quiz_exit_confirmation {
+    return Intl.message(
+      'Are you sure you want to exit the quiz and go back?',
+      name: 'quiz_exit_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get quiz_cancel_button {
+    return Intl.message(
+      'Cancel',
+      name: 'quiz_cancel_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit`
+  String get quiz_exit_button {
+    return Intl.message('Exit', name: 'quiz_exit_button', desc: '', args: []);
+  }
+
+  /// `Subjects page related strings`
+  String get _comment_subjects {
+    return Intl.message(
+      'Subjects page related strings',
+      name: '_comment_subjects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subjects`
+  String get subjects {
+    return Intl.message('Subjects', name: 'subjects', desc: '', args: []);
+  }
+
+  /// `Required`
+  String get required_subjects {
+    return Intl.message(
+      'Required',
+      name: 'required_subjects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional`
+  String get optional_subjects {
+    return Intl.message(
+      'Optional',
+      name: 'optional_subjects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No subjects available`
+  String get no_subjects_available {
+    return Intl.message(
+      'No subjects available',
+      name: 'no_subjects_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No subjects data available`
+  String get no_subjects_data_available {
+    return Intl.message(
+      'No subjects data available',
+      name: 'no_subjects_data_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No required subjects available for your current selections`
+  String get no_required_subjects_available {
+    return Intl.message(
+      'No required subjects available for your current selections',
+      name: 'no_required_subjects_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No optional subjects available for your current selections`
+  String get no_optional_subjects_available {
+    return Intl.message(
+      'No optional subjects available for your current selections',
+      name: 'no_optional_subjects_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Selections`
+  String get your_selections {
+    return Intl.message(
+      'Your Selections',
+      name: 'your_selections',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not selected`
+  String get not_selected {
+    return Intl.message(
+      'Not selected',
+      name: 'not_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subject name not available`
+  String get subject_name_not_available {
+    return Intl.message(
+      'Subject name not available',
+      name: 'subject_name_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subject Details`
+  String get subject_details {
+    return Intl.message(
+      'Subject Details',
+      name: 'subject_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message('Type', name: 'type', desc: '', args: []);
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
+  }
+
+  /// `Previous Price`
+  String get previous_price {
+    return Intl.message(
+      'Previous Price',
+      name: 'previous_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teacher Price`
+  String get teacher_price {
+    return Intl.message(
+      'Teacher Price',
+      name: 'teacher_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription Status`
+  String get subscription_status {
+    return Intl.message(
+      'Subscription Status',
+      name: 'subscription_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscribed`
+  String get subscribed {
+    return Intl.message('Subscribed', name: 'subscribed', desc: '', args: []);
+  }
+
+  /// `Not Subscribed`
+  String get not_subscribed {
+    return Intl.message(
+      'Not Subscribed',
+      name: 'not_subscribed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lesson Progress`
+  String get lesson_progress {
+    return Intl.message(
+      'Lesson Progress',
+      name: 'lesson_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed Lessons`
+  String get completed_lessons {
+    return Intl.message(
+      'Completed Lessons',
+      name: 'completed_lessons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Answer Statistics`
+  String get answer_statistics {
+    return Intl.message(
+      'Answer Statistics',
+      name: 'answer_statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correct Answer`
+  String get correct_answer {
+    return Intl.message(
+      'Correct Answer',
+      name: 'correct_answer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong Answer`
+  String get wrong_answer {
+    return Intl.message(
+      'Wrong Answer',
+      name: 'wrong_answer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accuracy Rate`
+  String get accuracy_rate {
+    return Intl.message(
+      'Accuracy Rate',
+      name: 'accuracy_rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dates`
+  String get dates {
+    return Intl.message('Dates', name: 'dates', desc: '', args: []);
+  }
+
+  /// `Created Date`
+  String get created_date {
+    return Intl.message(
+      'Created Date',
+      name: 'created_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updated Date`
+  String get updated_date {
+    return Intl.message(
+      'Updated Date',
+      name: 'updated_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Lessons`
+  String get view_lessons {
+    return Intl.message(
+      'View Lessons',
+      name: 'view_lessons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Details`
+  String get show_details {
+    return Intl.message(
+      'Show Details',
+      name: 'show_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hide Details`
+  String get hide_details {
+    return Intl.message(
+      'Hide Details',
+      name: 'hide_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown Subject`
+  String get unknown_subject {
+    return Intl.message(
+      'Unknown Subject',
+      name: 'unknown_subject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free`
+  String get free {
+    return Intl.message('Free', name: 'free', desc: '', args: []);
+  }
+
+  /// `Detailed Price`
+  String get detailed_price {
+    return Intl.message(
+      'Detailed Price',
+      name: 'detailed_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Price`
+  String get current_price {
+    return Intl.message(
+      'Current Price',
+      name: 'current_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completely Free Subject`
+  String get completely_free_subject {
+    return Intl.message(
+      'Completely Free Subject',
+      name: 'completely_free_subject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscribe Now`
+  String get subscribe_now {
+    return Intl.message(
+      'Subscribe Now',
+      name: 'subscribe_now',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are subscribed to this subject`
+  String get you_are_subscribed {
+    return Intl.message(
+      'You are subscribed to this subject',
+      name: 'you_are_subscribed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subject Details`
+  String get subject_details_section {
+    return Intl.message(
+      'Subject Details',
+      name: 'subject_details_section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System Information`
+  String get system_information {
+    return Intl.message(
+      'System Information',
+      name: 'system_information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Study Unit`
+  String get study_unit {
+    return Intl.message('Study Unit', name: 'study_unit', desc: '', args: []);
+  }
+
+  /// `Regular Subject`
+  String get regular_subject {
+    return Intl.message(
+      'Regular Subject',
+      name: 'regular_subject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lessons`
+  String get lessons {
+    return Intl.message('Lessons', name: 'lessons', desc: '', args: []);
+  }
+
+  /// `System`
+  String get system {
+    return Intl.message('System', name: 'system', desc: '', args: []);
+  }
+
+  /// `Stage`
+  String get stage {
+    return Intl.message('Stage', name: 'stage', desc: '', args: []);
+  }
+
+  /// `Classroom`
+  String get classroom {
+    return Intl.message('Classroom', name: 'classroom', desc: '', args: []);
+  }
+
+  /// `Term`
+  String get term {
+    return Intl.message('Term', name: 'term', desc: '', args: []);
+  }
+
+  /// `Path`
+  String get path {
+    return Intl.message('Path', name: 'path', desc: '', args: []);
+  }
+
+  /// `Correct`
+  String get correct {
+    return Intl.message('Correct', name: 'correct', desc: '', args: []);
+  }
+
+  /// `Wrong`
+  String get wrong {
+    return Intl.message('Wrong', name: 'wrong', desc: '', args: []);
+  }
+
+  /// `Accuracy`
+  String get accuracy {
+    return Intl.message('Accuracy', name: 'accuracy', desc: '', args: []);
+  }
+
+  /// `of`
+  String get of_separator {
+    return Intl.message('of', name: 'of_separator', desc: '', args: []);
+  }
+
+  /// `Created Date`
+  String get created_date_label {
+    return Intl.message(
+      'Created Date',
+      name: 'created_date_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updated Date`
+  String get updated_date_label {
+    return Intl.message(
+      'Updated Date',
+      name: 'updated_date_label',
+      desc: '',
+      args: [],
+    );
   }
 }
 

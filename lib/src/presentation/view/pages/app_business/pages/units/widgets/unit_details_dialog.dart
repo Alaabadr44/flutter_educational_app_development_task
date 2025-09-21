@@ -50,7 +50,7 @@ class UnitDetailsDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    unit.name ?? 'اسم الوحدة غير متوفر',
+                    unit.name ?? 'Unit name not available',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -128,7 +128,7 @@ class UnitDetailsDialog extends StatelessWidget {
                           children: [
                             if (unit.id != null)
                               Text(
-                                'الوحدة رقم ${unit.id}',
+                                'Unit #${unit.id}',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.primaryColor,
@@ -138,8 +138,8 @@ class UnitDetailsDialog extends StatelessWidget {
                             const SizedBox(height: 4),
                             Text(
                               unit.lessons == null || unit.lessons!.isEmpty
-                                  ? 'لا توجد دروس متاحة'
-                                  : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'درس' : 'دروس'} متاحة',
+                                  ? 'No lessons available'
+                                  : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'lesson' : 'lessons'} available',
                               style: TextStyle(
                                 fontSize: 16,
                                 color:
@@ -169,7 +169,7 @@ class UnitDetailsDialog extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'معلومات الوحدة',
+                            'Unit Information',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -191,7 +191,7 @@ class UnitDetailsDialog extends StatelessWidget {
             // Lessons section
             if (unit.lessons != null && unit.lessons!.isNotEmpty) ...[
               Text(
-                'الدروس المتاحة',
+                'Available Lessons',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -228,7 +228,7 @@ class UnitDetailsDialog extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'لا توجد دروس متاحة',
+                      'No lessons available',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -237,7 +237,7 @@ class UnitDetailsDialog extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'سيتم إضافة الدروس قريباً',
+                      'Lessons will be added soon',
                       style: TextStyle(fontSize: 14, color: Colors.orange[600]),
                     ),
                   ],
@@ -296,7 +296,7 @@ class UnitDetailsDialog extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      lesson.name ?? 'اسم الدرس غير متوفر',
+                      lesson.name ?? 'Lesson name not available',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -334,11 +334,11 @@ class UnitDetailsDialog extends StatelessWidget {
     final features = <Widget>[];
 
     if (lesson.videoCode != null && lesson.videoCode!.isNotEmpty) {
-      features.add(_buildFeatureChip(Icons.play_circle, 'فيديو', Colors.red));
+      features.add(_buildFeatureChip(Icons.play_circle, 'Video', Colors.red));
     }
 
     if (lesson.isAudio == 1 || lesson.audioFile != null) {
-      features.add(_buildFeatureChip(Icons.headphones, 'صوت', Colors.orange));
+      features.add(_buildFeatureChip(Icons.headphones, 'Audio', Colors.orange));
     }
 
     if (lesson.pdfFile != null && lesson.pdfFile!.isNotEmpty) {
@@ -346,7 +346,7 @@ class UnitDetailsDialog extends StatelessWidget {
     }
 
     if (features.isEmpty) {
-      features.add(_buildFeatureChip(Icons.text_fields, 'نص', Colors.grey));
+      features.add(_buildFeatureChip(Icons.text_fields, 'Text', Colors.grey));
     }
 
     return features;
@@ -392,22 +392,22 @@ class UnitDetailsDialog extends StatelessWidget {
     final rows = <Widget>[];
 
     if (unit.systemId != null) {
-      rows.add(_buildInfoRow('النظام', '${unit.systemId}'));
+      rows.add(_buildInfoRow('System', '${unit.systemId}'));
     }
     if (unit.stageId != null) {
-      rows.add(_buildInfoRow('المرحلة', '${unit.stageId}'));
+      rows.add(_buildInfoRow('Stage', '${unit.stageId}'));
     }
     if (unit.classroomId != null) {
-      rows.add(_buildInfoRow('الصف', '${unit.classroomId}'));
+      rows.add(_buildInfoRow('Classroom', '${unit.classroomId}'));
     }
     if (unit.termId != null) {
-      rows.add(_buildInfoRow('الفصل', '${unit.termId}'));
+      rows.add(_buildInfoRow('Term', '${unit.termId}'));
     }
     if (unit.subjectId != null) {
-      rows.add(_buildInfoRow('المادة', '${unit.subjectId}'));
+      rows.add(_buildInfoRow('Subject', '${unit.subjectId}'));
     }
     if (unit.createdAt != null) {
-      rows.add(_buildInfoRow('تاريخ الإنشاء', _formatDate(unit.createdAt!)));
+      rows.add(_buildInfoRow('Created Date', _formatDate(unit.createdAt!)));
     }
 
     return rows;

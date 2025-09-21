@@ -79,7 +79,7 @@ class UnitCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: unit.name ?? 'اسم الوحدة غير متوفر',
+                          text: unit.name ?? 'Unit name not available',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -92,7 +92,7 @@ class UnitCard extends StatelessWidget {
                         if (unit.id != null) ...[
                           const SizedBox(height: 4),
                           Text(
-                            'الوحدة #${unit.id}',
+                            'Unit #${unit.id}',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey[600],
@@ -200,7 +200,7 @@ class UnitCard extends StatelessWidget {
                 Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
                 const SizedBox(width: 6),
                 Text(
-                  'تم الإنشاء: ${_formatDate(unit.createdAt!)}',
+                  'Created: ${_formatDate(unit.createdAt!)}',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey[700],
@@ -223,8 +223,8 @@ class UnitCard extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                   unit.lessons!.isEmpty
-                      ? 'لا توجد دروس متاحة'
-                      : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'درس' : 'دروس'} متاحة',
+                      ? 'No lessons available'
+                      : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'lesson' : 'lessons'} available',
                   style: TextStyle(
                     fontSize: 12,
                     color:
@@ -264,7 +264,7 @@ class UnitCard extends StatelessWidget {
           size: 18,
         ),
         label: Text(
-          hasLessons ? 'بدء الدروس' : 'لا توجد دروس',
+          hasLessons ? 'Start Lessons' : 'No Lessons',
           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
         ),
       ),
@@ -275,16 +275,16 @@ class UnitCard extends StatelessWidget {
     final info = <String>[];
 
     if (unit.systemId != null) {
-      info.add('نظام: ${unit.systemId}');
+      info.add('System: ${unit.systemId}');
     }
     if (unit.stageId != null) {
-      info.add('مرحلة: ${unit.stageId}');
+      info.add('Stage: ${unit.stageId}');
     }
     if (unit.classroomId != null) {
-      info.add('صف: ${unit.classroomId}');
+      info.add('Classroom: ${unit.classroomId}');
     }
     if (unit.termId != null) {
-      info.add('فصل: ${unit.termId}');
+      info.add('Term: ${unit.termId}');
     }
 
     return info.join(' • ');

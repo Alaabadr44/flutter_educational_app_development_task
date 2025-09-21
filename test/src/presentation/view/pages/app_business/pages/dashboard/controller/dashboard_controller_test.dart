@@ -7,16 +7,99 @@ import 'package:flutter_application_bloc/src/domain/entities/academic_term_selec
 import 'package:flutter_application_bloc/src/domain/entities/educational_track_selection.dart';
 import 'package:flutter_application_bloc/src/core/utils/page_controller.dart';
 import 'package:flutter_application_bloc/src/presentation/view/mixins/list_type_view.dart';
+import 'package:flutter_application_bloc/src/core/config/l10n/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_bloc/src/core/config/injector.dart';
+import 'package:flutter_application_bloc/src/core/services/sound_service.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+// Mock class for AudioPlayersServices
+class MockAudioPlayersServices implements AudioPlayersServices {
+  @override
+  late AudioPlayer audioPlayer;
+
+  @override
+  Future initializeService() async {
+    // Mock implementation - do nothing
+  }
+
+  @override
+  String get name => "Mock Audio Player Service";
+
+  @override
+  playAssetSound(
+    String path, {
+    double? volume,
+    double? balance,
+    AudioContext? ctx,
+    Duration? position,
+    PlayerMode? mode,
+  }) async {
+    // Mock implementation - do nothing
+  }
+
+  @override
+  playNetworkSound(String url) async {
+    // Mock implementation - do nothing
+  }
+
+  @override
+  void stopSound() async {
+    // Mock implementation - do nothing
+  }
+}
 
 void main() {
   group('DashboardController Tests', () {
     late DashboardController controller;
 
-    setUp(() {
+    setUpAll(() async {
+      // Initialize Flutter binding for tests
+      TestWidgetsFlutterBinding.ensureInitialized();
+
+      // Register mock AudioPlayersServices
+      final mockAudioService = MockAudioPlayersServices();
+      injector.registerSingleton<AudioPlayersServices>(mockAudioService);
+    });
+
+    tearDownAll(() {
+      // Clean up injector
+      if (injector.isRegistered<AudioPlayersServices>()) {
+        injector.unregister<AudioPlayersServices>();
+      }
+    });
+
+    setUp(() async {
       // Create controller
       controller = DashboardController();
       controller.initDependencies();
     });
+
+    // Helper function to get a test context with localization
+    Future<BuildContext> getTestContext(WidgetTester tester) async {
+      late BuildContext capturedContext;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          home: Builder(
+            builder: (context) {
+              capturedContext = context;
+              return const Scaffold(body: Text('Test'));
+            },
+          ),
+        ),
+      );
+
+      return capturedContext;
+    }
 
     tearDown(() {
       try {
@@ -49,28 +132,41 @@ void main() {
     });
 
     group('Step Management - Base Steps (No Track)', () {
-      test('should return correct base step titles', () {
+      testWidgets('should return correct base step titles', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
         // Act
-        final stepTitles = controller.stepTitles;
+        final stepTitles = controller.stepTitles(context);
 
         // Assert
         expect(stepTitles.length, equals(4));
-        expect(stepTitles[0], equals("Education System Selection"));
-        expect(stepTitles[1], equals("Educational Stage Selection"));
-        expect(stepTitles[2], equals("Classroom / Grade Selection"));
-        expect(stepTitles[3], equals("Academic Term Selection"));
+        expect(stepTitles[0], equals(S.of(context).education_system_selection));
+        expect(
+          stepTitles[1],
+          equals(S.of(context).educational_stage_selection),
+        );
+        expect(stepTitles[2], equals(S.of(context).classroom_selection));
+        expect(stepTitles[3], equals(S.of(context).academic_term_selection));
       });
 
-      test('should return correct base step descriptions', () {
+      testWidgets('should return correct base step descriptions', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
         // Act
-        final descriptions = controller.stepDescriptions;
+        final descriptions = controller.stepDescriptions(context);
 
         // Assert
         expect(descriptions.length, equals(4));
-        expect(descriptions[0], equals("Select your education system"));
-        expect(descriptions[1], equals("Choose your educational stage"));
-        expect(descriptions[2], equals("Select your classroom or grade"));
-        expect(descriptions[3], equals("Choose the academic term"));
+        expect(descriptions[0], equals(S.of(context).select_education_system));
+        expect(descriptions[1], equals(S.of(context).select_educational_stage));
+        expect(descriptions[2], equals(S.of(context).select_classroom_grade));
+        expect(descriptions[3], equals(S.of(context).select_academic_term));
       });
 
       test('should return correct base step icons', () {
@@ -95,26 +191,37 @@ void main() {
         );
       });
 
-      test('should include Educational Track step when stage ID is 7', () {
+      testWidgets('should include Educational Track step when stage ID is 7', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
         // Act
-        final stepTitles = controller.stepTitles;
+        final stepTitles = controller.stepTitles(context);
 
         // Assert
         expect(stepTitles.length, equals(5));
-        expect(stepTitles[4], equals("Educational Track Selection"));
+        expect(
+          stepTitles[4],
+          equals(S.of(context).educational_track_selection),
+        );
       });
 
-      test(
+      testWidgets(
         'should include Educational Track description when stage ID is 7',
-        () {
+        (WidgetTester tester) async {
+          // Arrange
+          final context = await getTestContext(tester);
+
           // Act
-          final descriptions = controller.stepDescriptions;
+          final descriptions = controller.stepDescriptions(context);
 
           // Assert
           expect(descriptions.length, equals(5));
           expect(
             descriptions[4],
-            equals("Select your educational track (Secondary only)"),
+            equals(S.of(context).select_educational_track),
           );
         },
       );
@@ -130,27 +237,33 @@ void main() {
     });
 
     group('Navigation Logic', () {
-      test('should allow going to next step when current step is valid', () {
-        // Arrange
-        controller.selectedEducationSystem.value = SelectionData(
-          id: 1,
-          name: 'Public System',
-        );
-
-        // Act
-        controller.goNext();
-
-        // Assert
-        expect(controller.currentStepNotifier.value, equals(2));
-      });
-
-      test(
-        'should not allow going to next step when current step is invalid',
-        () {
-          // Arrange - No selection made
+      testWidgets(
+        'should allow going to next step when current step is valid',
+        (WidgetTester tester) async {
+          // Arrange
+          final context = await getTestContext(tester);
+          controller.selectedEducationSystem.value = SelectionData(
+            id: 1,
+            name: 'Public System',
+          );
 
           // Act
-          controller.goNext();
+          controller.goNext(context);
+
+          // Assert
+          expect(controller.currentStepNotifier.value, equals(2));
+        },
+      );
+
+      testWidgets(
+        'should not allow going to next step when current step is invalid',
+        (WidgetTester tester) async {
+          // Arrange
+          final context = await getTestContext(tester);
+          // No selection made
+
+          // Act
+          controller.goNext(context);
 
           // Assert
           expect(controller.currentStepNotifier.value, equals(1));
@@ -179,20 +292,28 @@ void main() {
         expect(controller.currentStepNotifier.value, equals(1));
       });
 
-      test('should allow jumping to specific valid step', () {
+      testWidgets('should allow jumping to specific valid step', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
         // Act
-        controller.goToStep(3);
+        controller.goToStep(3, context);
 
         // Assert
         expect(controller.currentStepNotifier.value, equals(3));
       });
 
-      test('should not allow jumping to invalid step', () {
+      testWidgets('should not allow jumping to invalid step', (
+        WidgetTester tester,
+      ) async {
         // Arrange
+        final context = await getTestContext(tester);
         final initialStep = controller.currentStepNotifier.value;
 
         // Act
-        controller.goToStep(10); // Invalid step
+        controller.goToStep(10, context); // Invalid step
 
         // Assert
         expect(controller.currentStepNotifier.value, equals(initialStep));
@@ -424,9 +545,12 @@ void main() {
     });
 
     group('Complete Workflow Tests', () {
-      test(
+      testWidgets(
         'should handle complete workflow for stage with track requirement',
-        () {
+        (WidgetTester tester) async {
+          // Arrange
+          final context = await getTestContext(tester);
+
           // Step 1: Education System Selection
           expect(controller.canGoNext(), isFalse);
           controller.selectedEducationSystem.value = SelectionData(
@@ -434,7 +558,7 @@ void main() {
             name: 'Public',
           );
           expect(controller.canGoNext(), isTrue);
-          controller.goNext();
+          controller.goNext(context);
           expect(controller.currentStepNotifier.value, equals(2));
 
           // Step 2: Educational Stage Selection (ID 7 - requires track)
@@ -444,7 +568,7 @@ void main() {
             name: 'High School',
           );
           expect(controller.canGoNext(), isTrue);
-          controller.goNext();
+          controller.goNext(context);
           expect(controller.currentStepNotifier.value, equals(3));
 
           // Step 3: Classroom Selection
@@ -454,7 +578,7 @@ void main() {
             name: 'Grade 12',
           );
           expect(controller.canGoNext(), isTrue);
-          controller.goNext();
+          controller.goNext(context);
           expect(controller.currentStepNotifier.value, equals(4));
 
           // Step 4: Academic Term Selection
@@ -464,7 +588,7 @@ void main() {
             name: 'First Term',
           );
           expect(controller.canGoNext(), isTrue);
-          controller.goNext();
+          controller.goNext(context);
           expect(controller.currentStepNotifier.value, equals(5));
 
           // Step 5: Educational Track Selection (required for stage 7)
@@ -476,31 +600,34 @@ void main() {
           expect(controller.canGoNext(), isTrue);
 
           // Verify all steps are present
-          expect(controller.stepTitles.length, equals(5));
+          expect(controller.stepTitles(context).length, equals(5));
         },
       );
 
-      test(
+      testWidgets(
         'should handle complete workflow for stage without track requirement',
-        () {
+        (WidgetTester tester) async {
+          // Arrange
+          final context = await getTestContext(tester);
+
           // Steps 1-4 for middle school (no track required)
           controller.selectedEducationSystem.value = SelectionData(
             id: 1,
             name: 'Public',
           );
-          controller.goNext();
+          controller.goNext(context);
 
           controller.selectedEducationalStage.value = SelectionData(
             id: 5,
             name: 'Middle School',
           );
-          controller.goNext();
+          controller.goNext(context);
 
           controller.selectedClassroom.value = ClassroomGradeSelection(
             id: 6,
             name: 'Grade 6',
           );
-          controller.goNext();
+          controller.goNext(context);
 
           controller.selectedAcademicTerm.value = AcademicTermSelection(
             id: 1,
@@ -510,19 +637,24 @@ void main() {
           // Should be at step 4 and can proceed (no step 5 for non-7 stages)
           expect(controller.currentStepNotifier.value, equals(4));
           expect(controller.canGoNext(), isTrue);
-          expect(controller.stepTitles.length, equals(4));
+          expect(controller.stepTitles(context).length, equals(4));
         },
       );
     });
 
     group('Edge Cases and Boundary Tests', () {
-      test('should handle stage changes that affect step count', () {
-        // Arrange - Start with stage that requires track
+      testWidgets('should handle stage changes that affect step count', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
+        // Start with stage that requires track
         controller.selectedEducationalStage.value = SelectionData(
           id: 7,
           name: 'High School',
         );
-        expect(controller.stepTitles.length, equals(5));
+        expect(controller.stepTitles(context).length, equals(5));
 
         // Act - Change to stage that doesn't require track
         controller.selectedEducationalStage.value = SelectionData(
@@ -531,7 +663,7 @@ void main() {
         );
 
         // Assert
-        expect(controller.stepTitles.length, equals(4));
+        expect(controller.stepTitles(context).length, equals(4));
       });
 
       test('should maintain step consistency when selections change', () {
@@ -557,10 +689,15 @@ void main() {
         expect(controller.canGoNext(), isTrue);
       });
 
-      test('should handle null selections gracefully', () {
+      testWidgets('should handle null selections gracefully', (
+        WidgetTester tester,
+      ) async {
+        // Arrange
+        final context = await getTestContext(tester);
+
         // Act & Assert - Should not crash
-        expect(() => controller.stepTitles, returnsNormally);
-        expect(() => controller.stepDescriptions, returnsNormally);
+        expect(() => controller.stepTitles(context), returnsNormally);
+        expect(() => controller.stepDescriptions(context), returnsNormally);
         expect(() => controller.stepIcons, returnsNormally);
         expect(() => controller.canGoNext(), returnsNormally);
         expect(() => controller.getSelections(), returnsNormally);

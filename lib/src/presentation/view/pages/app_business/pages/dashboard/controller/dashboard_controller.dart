@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../core/config/assets/assets.gen.dart';
 import '../../../../../../../core/config/injector.dart';
+import '../../../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../../../core/services/sound_service.dart';
 import '../../../../../../../core/services/user_service.dart';
 import '../../../../../../../core/utils/enums.dart';
@@ -23,37 +23,34 @@ class DashboardController with ListTypeView implements AppPageController {
   late ValueNotifier<EducationalTrackSelection?> selectedEducationalTrack;
 
   // Step titles - dynamically generated based on selected stage
-  List<String> get stepTitles {
+  List<String> stepTitles(BuildContext context) {
     final baseSteps = [
-      "Education System Selection",
-      "Educational Stage Selection",
-      "Classroom / Grade Selection",
-      "Academic Term Selection",
+      S.current.education_system_selection,
+      S.current.educational_stage_selection,
+      S.current.classroom_selection,
+      S.current.academic_term_selection,
     ];
 
     // Only add Educational Track Selection if selected stage ID is 7
     if (selectedEducationalStage.value?.id == 7) {
-      return [...baseSteps, "Educational Track Selection"];
+      return [...baseSteps, S.current.educational_track_selection];
     }
 
     return baseSteps;
   }
 
   // Step descriptions - dynamically generated based on selected stage
-  List<String> get stepDescriptions {
+  List<String> stepDescriptions(BuildContext context) {
     final baseDescriptions = [
-      "Select your education system",
-      "Choose your educational stage",
-      "Select your classroom or grade",
-      "Choose the academic term",
+      S.current.select_education_system,
+      S.current.select_educational_stage,
+      S.current.select_classroom_grade,
+      S.current.select_academic_term,
     ];
 
     // Only add Educational Track description if selected stage ID is 7
     if (selectedEducationalStage.value?.id == 7) {
-      return [
-        ...baseDescriptions,
-        "Select your educational track (Secondary only)",
-      ];
+      return [...baseDescriptions, S.current.select_educational_track];
     }
 
     return baseDescriptions;
@@ -111,37 +108,33 @@ class DashboardController with ListTypeView implements AppPageController {
     }
   }
 
-  void goNext() {
-    if (currentStepNotifier.value < stepTitles.length && canGoNext()) {
-     
-
+  void goNext(BuildContext context) {
+    if (currentStepNotifier.value < stepTitles(context).length && canGoNext()) {
+      // playSound();
       currentStepNotifier.value++;
     }
   }
 
-
-
-
-
-
-UserSelectionsModel getSelections() {
-  return UserSelectionsModel(
-    selectedEducationSystem: selectedEducationSystem.value,
-    selectedEducationalStage: selectedEducationalStage.value,
-    selectedClassroom: selectedClassroom.value,
-    selectedAcademicTerm: selectedAcademicTerm.value,
-    selectedEducationalTrack: selectedEducationalTrack.value,
-  );
-}
+  UserSelectionsModel getSelections() {
+    return UserSelectionsModel(
+      selectedEducationSystem: selectedEducationSystem.value,
+      selectedEducationalStage: selectedEducationalStage.value,
+      selectedClassroom: selectedClassroom.value,
+      selectedAcademicTerm: selectedAcademicTerm.value,
+      selectedEducationalTrack: selectedEducationalTrack.value,
+    );
+  }
 
   void goBack() {
     if (currentStepNotifier.value > 1) {
+      playSound();
       currentStepNotifier.value--;
     }
   }
 
-  void goToStep(int step) {
-    if (step >= 1 && step <= stepTitles.length) {
+  void goToStep(int step, BuildContext context) {
+    if (step >= 1 && step <= stepTitles(context).length) {
+      playSound();
       currentStepNotifier.value = step;
     }
   }
@@ -171,8 +164,6 @@ UserSelectionsModel getSelections() {
 
   @override
   void initDependencies({BuildContext? context}) {
-   
-
     // Initialize with first step
     onInitListTypeView();
     currentStepNotifier.value = 1;
@@ -199,6 +190,6 @@ UserSelectionsModel getSelections() {
   }
 
   void playSound() {
-    injector<AudioPlayersServices>().playAssetSound(Assets.sounds.login);
+    // injector<AudioPlayersServices>().playAssetSound(Assets.sounds.login);
   }
 }

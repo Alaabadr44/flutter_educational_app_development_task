@@ -58,14 +58,23 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m15(time) => "at ${time}";
 
-  static String m16(timer) => "Resend code in ${timer} seconds";
+  static String m16(attempts) => "${attempts} attempts per question";
 
-  static String m17(query) => "Searching for: \"${query}\"";
+  static String m17(minutes) => "${minutes} minutes";
 
-  static String m18(size) =>
+  static String m18(count) => "${count} questions";
+
+  static String m19(timer) => "Resend code in ${timer} seconds";
+
+  static String m20(query) => "Searching for: \"${query}\"";
+
+  static String m21(size) =>
       "${Intl.select(size, {'small': 'Small', 'large': 'Large', 'medium': 'Medium', 'other': 'they'})}";
 
-  static String m19(userName) => "Welcome back, ${userName}!";
+  static String m22(currentStep, totalSteps) =>
+      "Step ${currentStep} of ${totalSteps}";
+
+  static String m23(userName) => "Welcome back, ${userName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -76,8 +85,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "Vision_mission": MessageLookupByLibrary.simpleMessage(
       "Vision and mission",
     ),
+    "_comment_quiz": MessageLookupByLibrary.simpleMessage(
+      "Quiz and Questions related strings",
+    ),
+    "_comment_subjects": MessageLookupByLibrary.simpleMessage(
+      "Subjects page related strings",
+    ),
     "aboutUs": MessageLookupByLibrary.simpleMessage("About US"),
+    "academic_term_selection": MessageLookupByLibrary.simpleMessage(
+      "Academic Term Selection",
+    ),
     "accidents": MessageLookupByLibrary.simpleMessage("Accidents"),
+    "accuracy": MessageLookupByLibrary.simpleMessage("Accuracy"),
+    "accuracy_rate": MessageLookupByLibrary.simpleMessage("Accuracy Rate"),
     "active_filters_showing_results": m0,
     "add_additional_notes": MessageLookupByLibrary.simpleMessage(
       "Add any additional notes about the customer",
@@ -139,6 +159,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "amount_paid": MessageLookupByLibrary.simpleMessage("Amount Paid"),
     "analysis_report": MessageLookupByLibrary.simpleMessage("Analysis Report"),
+    "answer_statistics": MessageLookupByLibrary.simpleMessage(
+      "Answer Statistics",
+    ),
     "appTitle": MessageLookupByLibrary.simpleMessage("ON"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
@@ -299,6 +322,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "citizen": MessageLookupByLibrary.simpleMessage("Citizen"),
     "city": MessageLookupByLibrary.simpleMessage("City *"),
     "civilId": MessageLookupByLibrary.simpleMessage("Civil Id"),
+    "classroom": MessageLookupByLibrary.simpleMessage("Classroom"),
+    "classroom_selection": MessageLookupByLibrary.simpleMessage(
+      "Classroom Selection",
+    ),
     "clear": MessageLookupByLibrary.simpleMessage("Clear"),
     "clear_all_notifications": MessageLookupByLibrary.simpleMessage(
       "Clear All",
@@ -326,8 +353,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "company_optional": MessageLookupByLibrary.simpleMessage(
       "Company (Optional)",
     ),
+    "complete_selection": MessageLookupByLibrary.simpleMessage(
+      "Complete Selection",
+    ),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "completed_inspections": MessageLookupByLibrary.simpleMessage("Completed"),
+    "completed_lessons": MessageLookupByLibrary.simpleMessage(
+      "Completed Lessons",
+    ),
+    "completely_free_subject": MessageLookupByLibrary.simpleMessage(
+      "Completely Free Subject",
+    ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmNewPassword": MessageLookupByLibrary.simpleMessage(
       "Confirm New Password",
@@ -390,6 +426,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "contract_number": MessageLookupByLibrary.simpleMessage("Contract Number"),
     "contract_required": MessageLookupByLibrary.simpleMessage("Contract *"),
     "contracts": MessageLookupByLibrary.simpleMessage("Contracts"),
+    "correct": MessageLookupByLibrary.simpleMessage("Correct"),
+    "correct_answer": MessageLookupByLibrary.simpleMessage("Correct Answer"),
     "correspondense": MessageLookupByLibrary.simpleMessage("Correspondence"),
     "cost": MessageLookupByLibrary.simpleMessage("Cost"),
     "country": MessageLookupByLibrary.simpleMessage("Country *"),
@@ -407,12 +445,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_new_inspection": MessageLookupByLibrary.simpleMessage(
       "Create New Inspection",
     ),
+    "created_date": MessageLookupByLibrary.simpleMessage("Created Date"),
+    "created_date_label": MessageLookupByLibrary.simpleMessage("Created Date"),
     "credit_or_debit_card_payment": MessageLookupByLibrary.simpleMessage(
       "Credit or debit card payment",
     ),
     "currentTrips": MessageLookupByLibrary.simpleMessage(
       "Current Reservations",
     ),
+    "current_price": MessageLookupByLibrary.simpleMessage("Current Price"),
     "customerVehicleDocuments": MessageLookupByLibrary.simpleMessage(
       "Customer/\'s vehicle documents",
     ),
@@ -482,6 +523,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "date_format": MessageLookupByLibrary.simpleMessage("Date"),
     "date_package": m7,
+    "dates": MessageLookupByLibrary.simpleMessage("Dates"),
     "day": MessageLookupByLibrary.simpleMessage("Day"),
     "deals": MessageLookupByLibrary.simpleMessage("Deals"),
     "deductible_insurance": MessageLookupByLibrary.simpleMessage(
@@ -511,6 +553,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "describe_the_damage": MessageLookupByLibrary.simpleMessage(
       "Describe the damage",
     ),
+    "detailed_price": MessageLookupByLibrary.simpleMessage("Detailed Price"),
     "determineTheCurrentLocation": MessageLookupByLibrary.simpleMessage(
       "Determine the current location",
     ),
@@ -540,7 +583,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Editing Customer",
     ),
     "education": MessageLookupByLibrary.simpleMessage("Education"),
-    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "education_system_selection": MessageLookupByLibrary.simpleMessage(
+      "Education System Selection",
+    ),
+    "educational_stage_selection": MessageLookupByLibrary.simpleMessage(
+      "Educational Stage Selection",
+    ),
+    "educational_track_selection": MessageLookupByLibrary.simpleMessage(
+      "Educational Track Selection",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "email_": MessageLookupByLibrary.simpleMessage("Email *"),
     "email_address": MessageLookupByLibrary.simpleMessage("Email Address"),
     "email_address_required": MessageLookupByLibrary.simpleMessage(
@@ -591,6 +643,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_driving_license_number": MessageLookupByLibrary.simpleMessage(
       "Enter driving license number",
     ),
+    "enter_email_address": MessageLookupByLibrary.simpleMessage(
+      "Enter your email address",
+    ),
     "enter_identity_passport_number": MessageLookupByLibrary.simpleMessage(
       "Enter identity/passport number",
     ),
@@ -618,6 +673,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "enter_phone_for_otp": MessageLookupByLibrary.simpleMessage(
       "Enter your phone number so you can receive an OTP Code to reset Password",
+    ),
+    "enter_phone_number": MessageLookupByLibrary.simpleMessage(
+      "Enter your phone number",
     ),
     "enter_place_license_issued": MessageLookupByLibrary.simpleMessage(
       "Enter place where license was issued",
@@ -733,6 +791,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "found_302_message": MessageLookupByLibrary.simpleMessage(
       "Resource temporarily moved",
     ),
+    "free": MessageLookupByLibrary.simpleMessage("Free"),
     "frequently_asked_questions": MessageLookupByLibrary.simpleMessage(
       "Frequently Asked Questions",
     ),
@@ -757,6 +816,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "The requested resource is no longer available and has been permanently removed",
     ),
     "government": MessageLookupByLibrary.simpleMessage("Government *"),
+    "grid_view": MessageLookupByLibrary.simpleMessage("Grid View"),
     "guest_body_msg": MessageLookupByLibrary.simpleMessage(
       "Please Sign in first to View this Page",
     ),
@@ -769,6 +829,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "height": MessageLookupByLibrary.simpleMessage("Height"),
     "hello_user": m11,
     "help_and_support": MessageLookupByLibrary.simpleMessage("Help & Support"),
+    "hide_details": MessageLookupByLibrary.simpleMessage("Hide Details"),
     "hintAddress": MessageLookupByLibrary.simpleMessage("Enter your Address"),
     "hintEmail": MessageLookupByLibrary.simpleMessage("Enter your Email"),
     "hintLoginPassword": MessageLookupByLibrary.simpleMessage("Your Password"),
@@ -922,6 +983,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "length_required_411_message": MessageLookupByLibrary.simpleMessage(
       "The request did not specify the length of its content, which is required by the requested resource",
     ),
+    "lesson_progress": MessageLookupByLibrary.simpleMessage("Lesson Progress"),
+    "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
     "license_back": MessageLookupByLibrary.simpleMessage("License (Back Side)"),
     "license_back_image_required": MessageLookupByLibrary.simpleMessage(
       "License Back Image *",
@@ -952,6 +1015,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkValidationText": MessageLookupByLibrary.simpleMessage(
       "The links must start with http:// or https://",
     ),
+    "list_view": MessageLookupByLibrary.simpleMessage("List View"),
     "loading_inspection_details": MessageLookupByLibrary.simpleMessage(
       "Loading inspection details...",
     ),
@@ -1058,7 +1122,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_notifications_available": MessageLookupByLibrary.simpleMessage(
       "No notifications available",
     ),
+    "no_optional_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "No optional subjects available for your current selections",
+    ),
     "no_phone": MessageLookupByLibrary.simpleMessage("No phone"),
+    "no_required_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "No required subjects available for your current selections",
+    ),
+    "no_subjects_available": MessageLookupByLibrary.simpleMessage(
+      "No subjects available",
+    ),
+    "no_subjects_data_available": MessageLookupByLibrary.simpleMessage(
+      "No subjects data available",
+    ),
     "not_acceptable_406_message": MessageLookupByLibrary.simpleMessage(
       "The server cannot produce a response matching the list of acceptable values defined in the request\'s headers",
     ),
@@ -1074,7 +1150,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "not_modified_304_message": MessageLookupByLibrary.simpleMessage(
       "The resource has not been modified since the last request",
     ),
+    "not_selected": MessageLookupByLibrary.simpleMessage("Not selected"),
     "not_specified": MessageLookupByLibrary.simpleMessage("Not specified"),
+    "not_subscribed": MessageLookupByLibrary.simpleMessage("Not Subscribed"),
     "not_uploaded": MessageLookupByLibrary.simpleMessage("Not uploaded"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "notes_field": MessageLookupByLibrary.simpleMessage("Notes"),
@@ -1101,6 +1179,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "number_of_cylinders": MessageLookupByLibrary.simpleMessage(
       "Number of Cylinders *",
     ),
+    "of_separator": MessageLookupByLibrary.simpleMessage("of"),
     "offersAndRewards": MessageLookupByLibrary.simpleMessage(
       "Offers & Rewards",
     ),
@@ -1130,6 +1209,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "on_boarding_title_third": MessageLookupByLibrary.simpleMessage(
       "Convenient Pickup and Drop-off",
     ),
+    "optional_subjects": MessageLookupByLibrary.simpleMessage("Optional"),
     "order_booked_successfully": MessageLookupByLibrary.simpleMessage(
       "Order booked successfully",
     ),
@@ -1215,6 +1295,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password recovery?",
     ),
     "pastTrips": MessageLookupByLibrary.simpleMessage("Past Reservations"),
+    "path": MessageLookupByLibrary.simpleMessage("Path"),
     "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
     "payment_by_check_or_cheque": MessageLookupByLibrary.simpleMessage(
       "Payment by check or cheque",
@@ -1308,6 +1389,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "The server requires the request to be conditional",
     ),
     "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+    "previous_price": MessageLookupByLibrary.simpleMessage("Previous Price"),
+    "price": MessageLookupByLibrary.simpleMessage("Price"),
     "primary_phone": MessageLookupByLibrary.simpleMessage("Primary Phone"),
     "privacyAndPolicy": MessageLookupByLibrary.simpleMessage(
       "Privacy And Policy",
@@ -1332,6 +1415,46 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "purchase_price": MessageLookupByLibrary.simpleMessage("Purchase Price"),
     "quick_actions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
+    "quiz_allowed_attempts": MessageLookupByLibrary.simpleMessage(
+      "Allowed Attempts",
+    ),
+    "quiz_attempts_per_question": m16,
+    "quiz_back_button": MessageLookupByLibrary.simpleMessage("Back"),
+    "quiz_back_to_lessons": MessageLookupByLibrary.simpleMessage(
+      "Back to Lessons",
+    ),
+    "quiz_cancel_button": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "quiz_duration": MessageLookupByLibrary.simpleMessage("Quiz Duration"),
+    "quiz_duration_minutes": m17,
+    "quiz_exit_button": MessageLookupByLibrary.simpleMessage("Exit"),
+    "quiz_exit_confirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to exit the quiz and go back?",
+    ),
+    "quiz_exit_title": MessageLookupByLibrary.simpleMessage("Exit Quiz"),
+    "quiz_finish_button": MessageLookupByLibrary.simpleMessage("Finish Quiz"),
+    "quiz_lesson_name_fallback": MessageLookupByLibrary.simpleMessage("Lesson"),
+    "quiz_lesson_quiz_title": MessageLookupByLibrary.simpleMessage(
+      "Lesson Quiz",
+    ),
+    "quiz_name_fallback": MessageLookupByLibrary.simpleMessage("Quiz"),
+    "quiz_next_button": MessageLookupByLibrary.simpleMessage("Next"),
+    "quiz_no_questions_available": MessageLookupByLibrary.simpleMessage(
+      "No questions available",
+    ),
+    "quiz_no_questions_found_for_lesson": MessageLookupByLibrary.simpleMessage(
+      "No questions found for this lesson currently",
+    ),
+    "quiz_number_of_questions": MessageLookupByLibrary.simpleMessage(
+      "Number of Questions",
+    ),
+    "quiz_passing_score": MessageLookupByLibrary.simpleMessage("Passing Score"),
+    "quiz_passing_score_percentage": MessageLookupByLibrary.simpleMessage(
+      "60% or more",
+    ),
+    "quiz_previous_button": MessageLookupByLibrary.simpleMessage("Previous"),
+    "quiz_questions_count": m18,
+    "quiz_start_button": MessageLookupByLibrary.simpleMessage("Start Quiz"),
+    "quiz_submit_answer": MessageLookupByLibrary.simpleMessage("Submit Answer"),
     "read_more": MessageLookupByLibrary.simpleMessage("Read More"),
     "ready_to_login": MessageLookupByLibrary.simpleMessage(
       "Ready to login with test credentials",
@@ -1354,6 +1477,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "registration_expiry_date": MessageLookupByLibrary.simpleMessage(
       "Registration Expiry Date *",
     ),
+    "regular_subject": MessageLookupByLibrary.simpleMessage("Regular Subject"),
     "remaining_amount": MessageLookupByLibrary.simpleMessage(
       "Remaining Amount",
     ),
@@ -1390,10 +1514,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "required_field": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),
+    "required_subjects": MessageLookupByLibrary.simpleMessage("Required"),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "resendIn": MessageLookupByLibrary.simpleMessage("Resend In"),
     "resendOtp": MessageLookupByLibrary.simpleMessage("Resend OTP"),
-    "resend_code_in": m16,
+    "resend_code_in": m19,
     "reservations_management": MessageLookupByLibrary.simpleMessage(
       "Reservations Management",
     ),
@@ -1432,14 +1557,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "search_placeholder": MessageLookupByLibrary.simpleMessage(
       "Search by name, phone, or email...",
     ),
-    "searching_for": m17,
+    "searching_for": m20,
     "seats_count": MessageLookupByLibrary.simpleMessage("Seats Count *"),
     "see_other_303_message": MessageLookupByLibrary.simpleMessage(
       "Response found under different URI",
     ),
     "selectService": MessageLookupByLibrary.simpleMessage("Select Service"),
+    "select_academic_term": MessageLookupByLibrary.simpleMessage(
+      "Select the academic term",
+    ),
     "select_associated_company": MessageLookupByLibrary.simpleMessage(
       "Select associated company",
+    ),
+    "select_classroom_grade": MessageLookupByLibrary.simpleMessage(
+      "Select your classroom or grade",
     ),
     "select_contract": MessageLookupByLibrary.simpleMessage(
       "Select the rental contract",
@@ -1450,6 +1581,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "select_customer_classification": MessageLookupByLibrary.simpleMessage(
       "Select customer classification",
+    ),
+    "select_education_system": MessageLookupByLibrary.simpleMessage(
+      "Select your education system",
+    ),
+    "select_educational_stage": MessageLookupByLibrary.simpleMessage(
+      "Select your educational stage",
+    ),
+    "select_educational_track": MessageLookupByLibrary.simpleMessage(
+      "Select your educational track",
     ),
     "select_gender": MessageLookupByLibrary.simpleMessage("Select Gender"),
     "select_gender_required": MessageLookupByLibrary.simpleMessage(
@@ -1487,14 +1627,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "share": MessageLookupByLibrary.simpleMessage("Sharing"),
     "share_failed": MessageLookupByLibrary.simpleMessage("Share failed"),
     "share_report": MessageLookupByLibrary.simpleMessage("Share Report"),
+    "show_details": MessageLookupByLibrary.simpleMessage("Show Details"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
-    "size": m18,
+    "size": m21,
     "special": MessageLookupByLibrary.simpleMessage("Special"),
     "staff_management": MessageLookupByLibrary.simpleMessage(
       "Staff Management",
     ),
+    "stage": MessageLookupByLibrary.simpleMessage("Stage"),
     "state": MessageLookupByLibrary.simpleMessage("State"),
     "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
     "status_completed": MessageLookupByLibrary.simpleMessage("Completed"),
@@ -1502,17 +1644,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "status_in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
     "status_pending": MessageLookupByLibrary.simpleMessage("Pending"),
     "step": MessageLookupByLibrary.simpleMessage("Step"),
+    "step_of": m22,
     "steps_completed": MessageLookupByLibrary.simpleMessage("steps completed"),
     "storage_permission_denied": MessageLookupByLibrary.simpleMessage(
       "Storage permission is required to download files",
     ),
+    "study_unit": MessageLookupByLibrary.simpleMessage("Study Unit"),
+    "subject_details": MessageLookupByLibrary.simpleMessage("Subject Details"),
+    "subject_details_section": MessageLookupByLibrary.simpleMessage(
+      "Subject Details",
+    ),
+    "subject_name_not_available": MessageLookupByLibrary.simpleMessage(
+      "Subject name not available",
+    ),
+    "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
+    "subscribe_now": MessageLookupByLibrary.simpleMessage("Subscribe Now"),
+    "subscribed": MessageLookupByLibrary.simpleMessage("Subscribed"),
+    "subscription_status": MessageLookupByLibrary.simpleMessage(
+      "Subscription Status",
+    ),
     "switching_protocols_101_message": MessageLookupByLibrary.simpleMessage(
       "Switching protocols",
     ),
+    "system": MessageLookupByLibrary.simpleMessage("System"),
+    "system_information": MessageLookupByLibrary.simpleMessage(
+      "System Information",
+    ),
     "system_notification": MessageLookupByLibrary.simpleMessage("System"),
+    "teacher_price": MessageLookupByLibrary.simpleMessage("Teacher Price"),
     "temporary_redirect_307_message": MessageLookupByLibrary.simpleMessage(
       "The requested resource is temporarily available at a different URI",
     ),
+    "term": MessageLookupByLibrary.simpleMessage("Term"),
     "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Terms of Service for ths Route",
@@ -1562,6 +1725,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Transmission Types *",
     ),
     "trip_details": MessageLookupByLibrary.simpleMessage("Trip Details"),
+    "type": MessageLookupByLibrary.simpleMessage("Type"),
     "unauthorized_401_message": MessageLookupByLibrary.simpleMessage(
       "The request requires authentication or the user is not authorized to access the resource",
     ),
@@ -1573,6 +1737,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unknown_error_message": MessageLookupByLibrary.simpleMessage(
       "An unknown error has occurred. Please try again later",
     ),
+    "unknown_subject": MessageLookupByLibrary.simpleMessage("Unknown Subject"),
     "unprocessable_entity_422_message": MessageLookupByLibrary.simpleMessage(
       "The request was well-formed but was unable to be followed due to semantic errors",
     ),
@@ -1614,6 +1779,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "update_personal_information": MessageLookupByLibrary.simpleMessage(
       "Update personal information",
     ),
+    "updated_date": MessageLookupByLibrary.simpleMessage("Updated Date"),
+    "updated_date_label": MessageLookupByLibrary.simpleMessage("Updated Date"),
     "upgrade_required_426_message": MessageLookupByLibrary.simpleMessage(
       "The client should switch to a different protocol such as TLS/1.0, given in the Upgrade header field",
     ),
@@ -1701,6 +1868,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "view_inspection_report": MessageLookupByLibrary.simpleMessage(
       "View Inspection Report",
     ),
+    "view_lessons": MessageLookupByLibrary.simpleMessage("View Lessons"),
     "view_payment_details": MessageLookupByLibrary.simpleMessage(
       "View payment information",
     ),
@@ -1714,7 +1882,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "voucher_field_hint": MessageLookupByLibrary.simpleMessage("Voucher Code"),
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),
     "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back"),
-    "welcome_back_user": m19,
+    "welcome_back_user": m23,
     "welcome_get_started": MessageLookupByLibrary.simpleMessage(
       "Welcome! Let\'s get started",
     ),
@@ -1730,10 +1898,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeTheReasonOfCancellation": MessageLookupByLibrary.simpleMessage(
       "Write the reason of cancellation",
     ),
+    "wrong": MessageLookupByLibrary.simpleMessage("Wrong"),
+    "wrong_answer": MessageLookupByLibrary.simpleMessage("Wrong Answer"),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
+    "you_are_subscribed": MessageLookupByLibrary.simpleMessage(
+      "You are subscribed to this subject",
+    ),
     "yourAccountIsReadyToUse": MessageLookupByLibrary.simpleMessage(
       "Your account is ready to use. You will be redirected to the Home page in a few seconds..",
     ),
+    "your_selections": MessageLookupByLibrary.simpleMessage("Your Selections"),
   };
 }

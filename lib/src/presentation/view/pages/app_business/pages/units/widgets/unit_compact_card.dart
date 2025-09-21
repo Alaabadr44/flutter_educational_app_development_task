@@ -103,7 +103,7 @@ class UnitCompactCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: unit.name ?? 'اسم الوحدة غير متوفر',
+                          text: unit.name ?? 'Unit name not available',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
@@ -187,8 +187,8 @@ class UnitCompactCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   unit.lessons == null || unit.lessons!.isEmpty
-                      ? 'لا توجد دروس'
-                      : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'درس' : 'دروس'}',
+                      ? 'No lessons'
+                      : '${unit.lessons!.length} ${unit.lessons!.length == 1 ? 'lesson' : 'lessons'}',
                   style: TextStyle(
                     fontSize: 10,
                     color:
@@ -249,7 +249,7 @@ class UnitCompactCard extends StatelessWidget {
             Icon(hasLessons ? Icons.play_arrow : Icons.lock_outline, size: 14),
             const SizedBox(width: 4),
             Text(
-              hasLessons ? 'بدء' : 'مقفل',
+              hasLessons ? 'Start' : 'Locked',
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
             ),
           ],

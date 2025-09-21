@@ -117,7 +117,7 @@
   "academic_term_selection": "Academic Term Selection",
   "select_academic_term": "Select the academic term",
   "educational_track_selection": "Educational Track Selection",
-  "select_educational_track": "Select your educational track"
+  "select_educational_track": "Select your educational track",
   "validator_field_numeric_title": "This field should be only numbers",
   "validator_field_length_title": "The field must be at least 8 characters long. Please enter a longer value",
   "validator_field_password_not_match_title": "Password verification does not match the password you entered",
@@ -1033,5 +1033,139 @@
   "department": "Department",
   "title": "Title",
   "education": "Education",
-  "university": "University"
-}
+  "university": "University",
+  "step_of": "Step {currentStep} of {totalSteps}",
+  "@step_of": {
+    "description": "Step counter display",
+    "placeholders": {
+      "currentStep": {
+        "type": "int"
+      },
+      "totalSteps": {
+        "type": "int"
+      }
+    }
+  },
+  "complete_selection": "Complete Selection",
+  "grid_view": "Grid View",
+  "list_view": "List View",
+  
+  "_comment_quiz": "Quiz and Questions related strings",
+  "quiz_no_questions_available": "No questions available",
+  "quiz_no_questions_found_for_lesson": "No questions found for this lesson currently",
+  "quiz_back_button": "Back",
+  "quiz_lesson_quiz_title": "Lesson Quiz",
+  "quiz_number_of_questions": "Number of Questions",
+  "quiz_questions_count": "{count} questions",
+  "@quiz_questions_count": {
+    "description": "Display number of questions",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_duration": "Quiz Duration",
+  "quiz_duration_minutes": "{minutes} minutes",
+  "@quiz_duration_minutes": {
+    "description": "Display quiz duration in minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_allowed_attempts": "Allowed Attempts",
+  "quiz_attempts_per_question": "{attempts} attempts per question",
+  "@quiz_attempts_per_question": {
+    "description": "Display number of attempts per question",
+    "placeholders": {
+      "attempts": {
+        "type": "int"
+      }
+    }
+  },
+  "quiz_passing_score": "Passing Score",
+  "quiz_passing_score_percentage": "60% or more",
+  "quiz_start_button": "Start Quiz",
+  "quiz_back_to_lessons": "Back to Lessons",
+  "quiz_lesson_name_fallback": "Lesson",
+  "quiz_name_fallback": "Quiz",
+  "quiz_previous_button": "Previous",
+  "quiz_submit_answer": "Submit Answer",
+  "quiz_next_button": "Next",
+  "quiz_finish_button": "Finish Quiz",
+  "quiz_exit_title": "Exit Quiz",
+  "quiz_exit_confirmation": "Are you sure you want to exit the quiz and go back?",
+  "quiz_cancel_button": "Cancel",
+  "quiz_exit_button": "Exit",
+  
+  "_comment_subjects": "Subjects page related strings",
+  "subjects": "Subjects",
+  "required_subjects": "Required",
+  "optional_subjects": "Optional",
+  "no_subjects_available": "No subjects available",
+  "no_subjects_data_available": "No subjects data available",
+  "no_required_subjects_available": "No required subjects available for your current selections",
+  "no_optional_subjects_available": "No optional subjects available for your current selections",
+  "your_selections": "Your Selections",
+  "not_selected": "Not selected",
+  "subject_name_not_available": "Subject name not available",
+  "subject_details": "Subject Details",
+  "type": "Type",
+  "price": "Price",
+  "previous_price": "Previous Price",
+  "teacher_price": "Teacher Price",
+  "subscription_status": "Subscription Status",
+  "subscribed": "Subscribed",
+  "not_subscribed": "Not Subscribed",
+  "lesson_progress": "Lesson Progress",
+  "completed_lessons": "Completed Lessons",
+  "answer_statistics": "Answer Statistics",
+  "correct_answer": "Correct Answer",
+  "wrong_answer": "Wrong Answer",
+  "accuracy_rate": "Accuracy Rate",
+  "dates": "Dates",
+  "created_date": "Created Date",
+  "updated_date": "Updated Date",
+  "view_lessons": "View Lessons",
+  "show_details": "Show Details",
+  "hide_details": "Hide Details",
+  "unknown_subject": "Unknown Subject",
+  "free": "Free",
+  "subscribed": "Subscribed",
+  "not_subscribed": "Not Subscribed",
+  "detailed_price": "Detailed Price",
+  "current_price": "Current Price",
+  "completely_free_subject": "Completely Free Subject",
+  "subscribe_now": "Subscribe Now",
+  "you_are_subscribed": "You are subscribed to this subject",
+  "subject_details_section": "Subject Details",
+  "system_information": "System Information",
+  "study_unit": "Study Unit",
+  "regular_subject": "Regular Subject",
+  "lessons": "Lessons",
+  "completed": "Completed",
+  "system": "System",
+  "stage": "Stage",
+  "classroom": "Classroom",
+  "term": "Term",
+  "path": "Path",
+  "correct": "Correct",
+  "wrong": "Wrong",
+  "accuracy": "Accuracy",
+  "discount": "Discount",
+  "of_separator": "of",
+  "created_date_label": "Created Date",
+   "updated_date_label": "Updated Date",
+   
+   "subjects": "Subjects",
+   "required_subjects": "Required",
+   "optional_subjects": "Optional",
+   "no_subjects_available": "No subjects available",
+   "no_subjects_data_available": "No subjects data available",
+   "no_required_subjects_available": "No required subjects available for your current selections",
+   "no_optional_subjects_available": "No optional subjects available for your current selections",
+   "your_selections": "Your Selections",
+   "not_selected": "Not selected"
+  }

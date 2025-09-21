@@ -51,13 +51,13 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
     return ResponsiveLayout(
       isPadding: false,
       appBar: AppBar(
-        title: Text(widget.subject.name ?? 'الوحدات الدراسية'),
+        title: Text(widget.subject.name ?? 'Study Units'),
         actions: [
           // Search toggle
           IconButton(
             onPressed: () => setState(() => _showSearch = !_showSearch),
             icon: Icon(_showSearch ? Icons.search_off : Icons.search),
-            tooltip: _showSearch ? 'إخفاء البحث' : 'البحث',
+            tooltip: _showSearch ? 'Hide Search' : 'Search',
           ),
           // View toggle button
           ValueListenableBuilder(
@@ -85,19 +85,32 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
 
             // Units content
             Expanded(
-              child: BlocDataBuilder<UnitData>(
-                bloc: _pageController.unitsBloc,
-                builder: (context, state) {
-                  return state.maybeMap(
-                    loading: (value) => const Center(child: AppIndicator()),
-                    orElse:
-                        () => const Center(
-                          child: TextWidget(text: "لا توجد وحدات متاحة"),
-                        ),
-                    successList:
-                        (data) => _buildUnitsContent(context, data.data!),
-                  );
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  _pageController.getUnits();
+                  // Wait a bit for the loading to start
+                  await Future.delayed(const Duration(milliseconds: 300));
                 },
+                child: BlocDataBuilder<UnitData>(
+                  bloc: _pageController.unitsBloc,
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      loading: (value) => const Center(child: AppIndicator()),
+                      orElse:
+                          () => SingleChildScrollView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.6,
+                              child: const Center(
+                                child: TextWidget(text: "No units available"),
+                              ),
+                            ),
+                          ),
+                      successList:
+                          (data) => _buildUnitsContent(context, data.data!),
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -172,7 +185,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.subject.name ?? 'اسم المادة غير متوفر',
+                  widget.subject.name ?? 'Subject name not available',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -199,8 +212,8 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                         ),
                         child: Text(
                           widget.subject.type == 'required'
-                              ? 'إجباري'
-                              : 'اختياري',
+                              ? 'Required'
+                              : 'Optional',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -233,8 +246,8 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                         ),
                         child: Text(
                           widget.subject.price! > 0
-                              ? '${widget.subject.price} ر.س'
-                              : 'مجاني',
+                              ? '${widget.subject.price} SAR'
+                              : 'Free',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -263,7 +276,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${widget.subject.finishesLessonsCount ?? 0} من ${widget.subject.lessonsCount} دروس مكتملة',
+                        '${widget.subject.finishesLessonsCount ?? 0} of ${widget.subject.lessonsCount} lessons completed',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey[700],
@@ -291,7 +304,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: 'البحث في الوحدات والدروس...',
+          hintText: 'Search in units and lessons...',
           prefixIcon: const Icon(Icons.search),
           suffixIcon:
               _searchQuery.isNotEmpty
@@ -334,7 +347,8 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
           : _buildEmptyState();
     }
 
-    return Padding(
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       child: ValueListenableBuilder<ListType>(
         valueListenable: _pageController.listTypeNotifier,
@@ -351,6 +365,8 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
 
   Widget _buildExpandableUnitsList(List<UnitData> units) {
     return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: units.length,
       separatorBuilder: (context, index) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
@@ -419,7 +435,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              unit.name ?? 'اسم الوحدة غير متوفر',
+                              unit.name ?? 'Unit name not available',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -428,7 +444,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${unit.lessons?.length ?? 0} دروس',
+                              '${unit.lessons?.length ?? 0} lessons',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[600],
@@ -488,11 +504,9 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
     return ResponsiveListWidget<UnitData>(
       items: units,
       listType: ListType.grid,
-      shrinkWrap: false,
-      hasRefreshIndicator: true,
-      onRefresh: () async {
-        _pageController.getUnits();
-      },
+      shrinkWrap: true,
+      hasRefreshIndicator: false,
+      physics: const NeverScrollableScrollPhysics(),
       childAspectRatio: 0.85,
       maxCrossAxisExtent: 280,
       itemBuilder: (context, unit, index) {
@@ -565,7 +579,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      lesson.name ?? 'اسم الدرس غير متوفر',
+                      lesson.name ?? 'Lesson name not available',
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -590,7 +604,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'مكتمل',
+                    'Completed',
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
@@ -638,7 +652,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
             ),
             const SizedBox(height: 24),
             const TextWidget(
-              text: 'لا توجد وحدات متاحة',
+              text: 'No units available',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -647,7 +661,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
             ),
             const SizedBox(height: 8),
             TextWidget(
-              text: 'سيتم إضافة الوحدات الدراسية قريباً',
+              text: 'Study units will be added soon',
               style: TextStyle(fontSize: 16, color: Colors.grey[600]),
               textAlign: TextAlign.center,
             ),
@@ -667,7 +681,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
               ),
               icon: const Icon(Icons.refresh),
               label: const Text(
-                'تحديث',
+                'Refresh',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
@@ -734,12 +748,12 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
     final features = <Widget>[];
 
     if (lesson.videoCode != null && lesson.videoCode!.isNotEmpty) {
-      features.add(_buildFeatureChip(Icons.play_circle, 'فيديو', Colors.red));
+      features.add(_buildFeatureChip(Icons.play_circle, 'Video', Colors.red));
     }
 
     if (lesson.isAudio == 1 ||
         (lesson.audioFile != null && lesson.audioFile.toString().isNotEmpty)) {
-      features.add(_buildFeatureChip(Icons.headphones, 'صوت', Colors.orange));
+      features.add(_buildFeatureChip(Icons.headphones, 'Audio', Colors.orange));
     }
 
     if (lesson.pdfFile != null && lesson.pdfFile!.isNotEmpty) {
@@ -747,7 +761,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
     }
 
     if (lesson.textDesc != null && lesson.textDesc.toString().isNotEmpty) {
-      features.add(_buildFeatureChip(Icons.text_fields, 'نص', Colors.green));
+      features.add(_buildFeatureChip(Icons.text_fields, 'Text', Colors.green));
     }
 
     return features;
@@ -813,7 +827,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
             ),
             const SizedBox(height: 20),
             const TextWidget(
-              text: 'لم يتم العثور على نتائج',
+              text: 'No results found',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -822,7 +836,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
             ),
             const SizedBox(height: 8),
             TextWidget(
-              text: 'لا توجد وحدات أو دروس تطابق البحث "$_searchQuery"',
+              text: 'No units or lessons match the search "$_searchQuery"',
               style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               textAlign: TextAlign.center,
             ),
@@ -845,7 +859,7 @@ class _UnitsPageSflState extends State<UnitsPageSfl>
               ),
               icon: const Icon(Icons.clear),
               label: const Text(
-                'مسح البحث',
+                'Clear Search',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
             ),
