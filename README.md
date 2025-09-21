@@ -36,8 +36,8 @@
 
 | Environment | APK Download |
 |-------------|--------------|
-| **Development** | [📦 Dev APK](https://drive.google.com/file/d/1E5aUAiFDKuGnH3-u9ls47YZWZpxkwFWn/view?usp=sharing) |
-| **Production** | [🚀 Prod APK](https://drive.google.com/file/d/1UEEFwdAJbRYbtTPGvQbDzK2oxXRD5qES/view?usp=sharing) |
+| **Development** | [📦 Dev APK](https://drive.google.com/file/d/1IEdFIA4oWtYHFJG39fL3I1qwZuj7dttk/view?usp=sharing) |
+| **Production** | [🚀 Prod APK](https://drive.google.com/file/d/1mcS9k01D0qJxoSeyVI3Sn5HxIBdEgW0M/view?usp=sharing) |
 
 ## 🎯 Project Overview
 
